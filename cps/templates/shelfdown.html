@@ -18,6 +18,8 @@
     {% if g.current_theme == 1 %}
        <link href="{{ url_for('static', filename='css/caliBlur.css') }}" rel="stylesheet" media="screen">
        <link href="{{ url_for('static', filename='css/caliBlur_override.css') }}" rel="stylesheet" media="screen">
+    {% elif g.current_theme == 2 %}
+       <link href="{{ url_for('static', filename='css/spiky_odradek.css') }}" rel="stylesheet" media="screen">
     {% endif %}
     {% block header %}{% endblock %}
   </head>

@@ -1,0 +1,3908 @@
+/* spiky_odradek Dark Theme for Calibre-Web
+ * Based on mockup design by /u/spiky_odradek
+ * Loaded when config_theme == 2
+ * Fonts self-hosted in static/fonts/
+ */
+
+@font-face {
+  font-family: "Outfit";
+  src: url("../fonts/Outfit.ttf") format("truetype");
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+:root body {
+  font-family: "Outfit", sans-serif;
+  color: white;
+}
+
+h1 {
+  margin-top: 8px;
+  margin-bottom: 24px;
+  font-weight: 500 !important;
+  font-size: 42px;
+}
+
+h2 {
+  margin-top: 8px;
+  margin-bottom: 32px;
+  font-weight: 600 !important;
+  font-size: 32px;
+}
+
+.publishers a {
+  color: #90aaf9 !important;
+}
+
+.publishers a:hover {
+  color: #90aaf9 !important;
+  text-decoration: none;
+}
+
+.nav-head:nth-child(n + 2) {
+  border-top: 1px solid #2a2d35 !important;
+}
+
+.pagination-info, .page-list {
+  color: #777777;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="query"],
+input[type="search"],
+input[type="number"],
+select {
+  background-color: #1a1d24 !important;
+  color: #e3e4e4 !important;
+  border: 1px solid #2a2d35 !important;
+  border-radius: 8px !important;
+  padding: 20px 16px !important;
+  font-size: 16px !important;
+}
+
+select {
+  padding-top: 0px !important;
+  padding-right: 16px !important;
+  padding-bottom: 0px !important;
+  padding-left: 16px !important;
+  height: 42px !important;
+}
+
+form[role=form] > .form-group > label[for="username"],
+form[role=form] > .form-group > label[for="password"] {
+  display: none;
+}
+
+/* Intended for the login form */
+div.well.col-sm-6.col-sm-offset-2 {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  align-items: center;
+  width: 80vw;
+  max-width: 512px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+}
+
+div.well.col-sm-6.col-sm-offset-2 form {
+  width: 100%;
+}
+
+td > a {
+  color: white !important;
+}
+
+table {
+  border: none !important;
+}
+
+th {
+  border-bottom: none !important;
+  border-top: none !important;
+}
+
+.th-inner {
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+td, th {
+  border-left: 1px solid transparent !important;
+  border-right: 1px solid transparent !important;
+}
+
+td {
+  border-bottom: 1px solid #2a2d35 !important;
+}
+
+tbody > tr:nth-child(1) > td {
+  border-top: none !important;
+}
+
+table tr:nth-child(odd) td{
+  background-color: #1a1d24;
+}
+table tr:nth-child(even) td{
+  background-color: #151820;
+}
+
+.table-striped > tbody > tr {
+  background-color: #1a1d24 !important;
+}
+
+input[type="checkbox"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #1a1d24;
+  margin: 0;
+  font: inherit;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #4a4d58;
+  border-radius: 2px;
+  position: relative;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+input[type="checkbox"]:checked {
+  background-color: #90AAF9;
+  border: 2px solid #90AAF9;
+}
+
+input[type="checkbox"]:checked::before {
+  content: "";
+  width: 0.65em;
+  height: 0.65em;
+  transform: scale(1);
+  display: block;
+  top: 0px;
+  left: 4px;
+  width: 6px;
+  height: 12px;
+  position: absolute;
+  border-style: solid;
+  border-color: #111318;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.form-group:has(input[type="checkbox"]), .block-label:has(input[type="checkbox"]), label:has(input[type="checkbox"]) {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.form-group:has(input[type="checkbox"]) label, .block-label:has(input[type="checkbox"]) span {
+  margin: 0;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+#book_edit_frm #xchange {
+  display: none;
+}
+
+.modal-content {
+  background: #1a1d24;
+  border: 1px solid #2a2d35;
+  border-radius: 16px;
+}
+
+.modal-header {
+  padding: 0 !important;
+  border-bottom: none !important;
+}
+
+.modal-footer {
+  border-top: none;
+}
+
+.modal.fade .modal-dialog {
+  -webkit-transform: translate(25%, 0);
+  -ms-transform: translate(25%, 0);
+  -o-transform: translate(25%, 0);
+  transform: translate(25%, 0);
+}
+
+.modal.in .modal-dialog {
+  -webkit-transform: translate(0, 0);
+  -ms-transform: translate(0, 0);
+  -o-transform: translate(0, 0);
+  transform: translate(0, 0);
+}
+
+#details_close {
+  display: none;
+}
+
+#bookDetailsModal > .modal-lg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  max-width: 560px;
+  width: 100%;
+}
+
+#bookDetailsModal > .modal-lg  > .modal-content{
+  height: 100vh;
+  border-radius: 16px 0 0 16px;
+  padding: 32px;
+  border: none;
+  border-left: 1px solid #2a2d35;
+}
+
+.modal-backdrop.in {
+  opacity: 0.7;
+}
+
+#bookDetailsModalLabel {
+  display: none;
+}
+
+.book-meta > .btn-toolbar {
+  margin-top: 20px;
+  margin-bottom: 4px;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.book-meta #title {
+  margin-bottom: 8px !important;
+}
+
+.book-meta .author a {
+  color: white !important;
+  font-size: 24px;
+}
+
+.book-meta .publishers, .book-meta .publishing-date {
+  font-size: 18px;
+}
+
+.book-meta .comments {
+  padding-top: 10px;
+  margin-top: 32px;
+  border-top: 1px solid #2a2d35;
+  font-size: 16px;
+}
+
+.book-meta h3#decription {
+  display: none;
+}
+
+.book-meta .tags a {
+  display: inline;
+}
+
+.book-meta {
+  padding-bottom: 20px;
+}
+
+.book-meta .btn-toolbar .btn,
+.book-meta .btn-toolbar .btn-primary {
+  background: transparent !important;
+  color: white !important;
+  border: 1px solid #2a2d35 !important;
+}
+
+.book-meta .btn-toolbar .btn:hover,
+.book-meta .btn-toolbar .btn-primary:hover {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border-color: #90aaf9 !important;
+}
+
+#advanced_search {
+  padding: 8px 14px !important;
+  border: 1px solid #2a2d35 !important;
+  border-radius: 8px !important;
+  color: #e0e1e3 !important;
+  font-size: 13px !important;
+  background: transparent !important;
+  height: 42px;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px;
+}
+
+#advanced_search:hover {
+  border-color: #90aaf9 !important;
+  color: #90aaf9 !important;
+  background: transparent !important;
+}
+
+.btn-primary {
+  background-color: #1f2127 !important;
+  color: #90aaf9 !important;
+  border: 1px solid #2a2d35 !important;
+}
+
+button, .btn {
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 16px !important;
+  cursor: pointer !important;
+  transition: background-color 0.3s ease !important;
+}
+
+.form-group > #query {
+  height: 42px !important;
+  padding: 8px 16px !important;
+  font-size: 14px !important;
+  border-radius: 8px 0 0 8px !important;
+}
+
+#query_submit {
+  height: 42px;
+  padding: 8px 14px;
+  border-radius: 0 8px 8px 0;
+}
+
+/* Primary action: bare <button> elements (form submits, etc.) get accent fill.
+   .btn-primary.active = active sort toggle, also accent-filled. */
+button,
+.btn-primary.active {
+  background-color: #90aaf9 !important;
+  color: #0c0e14 !important;
+  border: none;
+}
+
+/* Secondary / utility: .btn-default class always dark surface.
+   Class selector (0,1,0,0) beats bare `button` element (0,0,1,0) so
+   <button class="btn-default"> elements correctly become dark too. */
+.btn-default {
+  background-color: #1f2127 !important;
+  color: #9d9ea0 !important;
+  border: 1px solid #2a2d35 !important;
+}
+
+/* Search submit: subtle dark, not filled blue */
+#query_submit {
+  background-color: #1a1d24 !important;
+  color: #9d9ea0 !important;
+  border: 1px solid #2a2d35 !important;
+  border-left: none !important;
+  font-size: 14px !important;
+}
+
+#query_submit:hover {
+  background-color: #232630 !important;
+  color: #e0e1e3 !important;
+}
+
+.btn-primary:hover {
+  background-color: #393b3f !important;
+}
+
+button:hover,
+.btn-primary.active:hover {
+  background-color: #6589f6 !important;
+}
+
+.btn-default:hover {
+  background-color: #272a33 !important;
+  color: #e8e9ec !important;
+  border-color: #3a3d48 !important;
+}
+
+button:active,
+.btn-primary.active:active {
+  background-color: #426ff5 !important;
+}
+
+.btn-default:active {
+  background-color: #232630 !important;
+  color: #e8e9ec !important;
+}
+
+.btn-xs {
+  padding: 4px 8px;
+  background: none;
+  border: 1px solid #2a2d35 !important;
+}
+
+html.http-error {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+.http-error body {
+  margin: 0;
+  height: 100%;
+  display: table;
+  width: 100%;
+  overflow: hidden;
+}
+
+.http-error body > div {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden !important;
+}
+
+.filterheader {
+  display: flex;
+}
+
+.filterheader > * {
+  border-radius: 0 !important;
+  border-left: none !important;
+}
+
+.filterheader > :first-child {
+  border-top-left-radius: 8px !important;
+  border-bottom-left-radius: 8px !important;
+  border-left: 1px solid #2a2d35 !important;
+}
+
+.filterheader > :last-child {
+  border-top-right-radius: 8px !important;
+  border-bottom-right-radius: 8px !important;
+}
+
+.pagination > li > a, .pagination > li > span {
+  background-color: #1a1d24;
+  color: #90aaf9;
+  border: 1px solid #2a2d35;
+}
+
+.pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover {
+  background-color: #90aaf9;
+  color: #111318;
+  border: 1px solid #90aaf9;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  background: #111318;
+}
+
+body h2 {
+  font-weight: normal;
+  color: white;
+}
+
+a,
+.danger,
+.book-remove,
+.editable-empty,
+.editable-empty:hover {
+  color: #6589f6;
+}
+
+.book-remove:hover {
+  color: #23527c;
+}
+
+.user-remove:hover {
+  color: #23527c;
+}
+
+.btn-default a {
+  color: #444;
+}
+
+.panel-title > a {
+  text-decoration: none;
+}
+
+#scnd-nav {
+  border-top: 1px solid #2a2d35 !important;
+}
+
+.navigation li a {
+  color: #e0e1e3;
+  text-decoration: none;
+  display: block;
+  padding: 8px 12px;
+  font-size: 14px;
+}
+
+.navigation .nav-head {
+  text-transform: uppercase;
+  color: #6b6e76;
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  margin: 24px 0 12px 0;
+}
+
+.navigation .nav-head:nth-child(1n + 2) {
+  border-top: 1px solid #2a2d35;
+  padding-top: 20px;
+}
+
+.btn-default a:hover {
+  color: #6589f6;
+  text-decoration: None;
+}
+
+.btn-default:hover {
+  color: #6589f6;
+}
+
+.editable-click,
+a.editable-click,
+a.editable-click:hover {
+  border-bottom: None;
+}
+
+table .bg-primary a {
+  color: #fff;
+}
+
+table .bg-dark-danger a {
+  color: #fff;
+}
+
+.book-meta .identifiers a {
+  display: inline;
+}
+
+.navigation .create-shelf a {
+  color: #90aaf9;
+  background: transparent;
+  border: 1px solid #90aaf9;
+  padding: 6px 16px;
+  border-radius: 6px;
+  font-size: 13px;
+  text-decoration: none;
+}
+
+.navigation .create-shelf a:hover {
+  background: rgba(144, 170, 249, 0.1);
+}
+
+.navigation li a:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+}
+
+.navigation li.active a {
+  background: rgba(144, 170, 249, 0.1);
+  border-radius: 6px;
+  color: #90aaf9;
+}
+
+.navigation li a span.glyphicon {
+  margin-right: 10px;
+  font-size: 13px;
+  opacity: 0.6;
+}
+
+.navigation .create-shelf {
+  margin: 20px 0;
+  font-size: 13px;
+  text-align: center;
+}
+
+.row.display-flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.row-fluid.text-center {
+  margin-top: -20px;
+}
+
+.container-fluid {
+  padding: 0;
+}
+
+.container-fluid img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  max-height: 100%;
+}
+
+.container-fluid .discover {
+  margin-bottom: 50px;
+}
+
+.container-fluid .new-books {
+  border-top: 1px solid #2a2d35;
+}
+
+.container-fluid .new-books h2 {
+  margin: 50px 0 0 0;
+}
+
+.container-fluid .book {
+  margin-top: 20px;
+  max-width: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.cover {
+  margin-bottom: 10px;
+}
+
+.container-fluid .book .cover {
+  height: auto !important;
+  aspect-ratio: 2 / 3;
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #1a1d24;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+/* Make anchor fill the full cover container */
+.container-fluid .book .cover > a {
+  display: block !important;
+  height: 100%;
+  width: 100%;
+}
+
+/* Make span fill the anchor */
+.container-fluid .book .cover > a > span.img {
+  display: block !important;
+  height: 100%;
+  width: 100%;
+}
+
+.author-link img {
+  display: block;
+  height: 100%;
+}
+
+.author-bio img {
+  margin: 0 1em 1em 0;
+}
+
+.datepicker.form-control {
+  position: static;
+}
+
+.container-fluid .book .cover span .img {
+  bottom: 0;
+  height: 100%;
+  position: absolute;
+}
+
+.container-fluid .book .cover span img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.media-body p {
+  text-align: justify;
+}
+
+.container-fluid .book .meta p {
+  margin: 0;
+}
+
+.container-fluid .book .meta .title {
+  color: white !important;
+  font-weight: 400 !important;
+  font-size: 16px !important;
+  text-align: center;
+}
+
+.container-fluid .book .meta .series {
+  font-weight: 400;
+  font-size: 12px;
+  color: #444;
+}
+
+p.series {
+  text-align: center;
+}
+
+.container-fluid .book .meta .author {
+  text-align: center;
+}
+
+.container-fluid .book .meta .author-name, .container-fluid .book .meta .author span {
+  color: #9d9ea0 !important;
+  font-weight: 400 !important;
+  font-size: 13px !important;
+}
+
+.container-fluid .book .meta .rating {
+  margin-top: 5px;
+}
+
+.rating .glyphicon-star-empty {
+  color: #444;
+}
+
+.rating .glyphicon-star.good {
+  color: #444;
+}
+
+.rating-clear .glyphicon-remove {
+  color: #333;
+}
+
+.container-fluid .author .author-hidden,
+.container-fluid .author .author-hidden-divider {
+  display: none;
+}
+
+/* Scope to direct layout columns only — not inner Bootstrap grid columns */
+.row-fluid > .col-sm-2 {
+  width: 300px !important;
+  padding-left: 0;
+}
+
+.row-fluid > .col-sm-10 {
+  padding-left: 48px;
+  padding-right: 48px;
+  width: calc(100% - 300px);
+}
+
+.row-fluid > .col-sm-10 {
+  margin-top: 84px;
+}
+
+.navbar-toggle {
+  position: absolute;
+  right: 10px;
+  top: 20px;
+  background-color: #fff0 !important;
+  border: 1px solid #4a4d58 !important;
+}
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: #e8e9ec !important;
+  transition: transform 0.2s ease-in-out,
+              opacity   0.2s ease-in-out,
+              background-color 0.15s ease-in-out;
+  transform-origin: center;
+}
+
+.navbar-right {
+  margin-left: 0;
+  margin-right: 48px;
+}
+
+.navbar-header {
+  width: 300px !important;
+  height: 68px;
+}
+
+.navbar-brand {
+  z-index: 200001;
+  font-family: "Outfit", sans-serif;
+  font-weight: 600 !important;
+  font-size: 24px;
+  color: white !important;
+  margin: 18px 8px !important;
+  display: flex;
+  align-items: center;
+  position: absolute;
+}
+
+.navbar-brand::before {
+  content: "";
+  background-image: url('../icon.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: inline-block;
+  height: 48px;
+  width: 48px;
+  display: block;
+  margin-right: 12px;
+}
+
+#form-upload {
+  margin: 0;
+}
+
+.navbar-form, .navbar-collapse {
+  margin: 22px 0;
+}
+
+.navbar-left {
+  padding-left: 48px;
+  margin-top: 24px;
+}
+
+.navbar-collapse, .collapse {
+  margin-top: 24px;
+}
+
+.close {
+  text-shadow: none !important;
+  font-size: 48px !important;
+  opacity: 1 !important;
+  color: #A9AAAC !important;
+  font-weight: 200 !important;
+}
+
+.close, .close:hover, .close:active {
+  background: none !important;
+}
+
+.close > span {
+  height: 48px;
+  width: 48px;
+  display: inline-block;
+}
+
+.more-stuff {
+  padding-top: 20px;
+  border-top: 1px solid #2a2d35;
+}
+
+.more-stuff > li {
+  margin-bottom: 10px;
+}
+
+.navbar-collapse.in .navbar-nav {
+  margin: 0;
+}
+
+span.glyphicon.glyphicon-tags {
+  padding-right: 5px;
+  color: #999;
+  vertical-align: text-top;
+}
+
+.well {
+  background-color: #1a1d24;
+  border: 1px solid #2a2d35;
+  border-radius: 16px;
+  padding: 48px;
+}
+
+.navbar-default {
+  z-index: 1000;
+  margin-bottom: 0;
+  background: transparent !important;
+  border: none;
+  height: 94px;
+  position: fixed;
+  left: 0;
+  right: 0;
+}
+
+.col-sm-2 > .navigation {
+  z-index: 100;
+  font-size: 14px;
+  position: fixed;
+  height: 100vh;
+  bottom: 0;
+  width: 300px;
+  background: #1a1d24;
+  border-right: 1px solid #2a2d35;
+  padding: 16px;
+  padding-top: 84px !important;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #2a2d35 #1a1d24;
+}
+
+.col-sm-2 > .navigation::-webkit-scrollbar {
+  width: 6px;
+}
+
+.col-sm-2 > .navigation::-webkit-scrollbar-track {
+  background: #1a1d24;
+}
+
+.col-sm-2 > .navigation::-webkit-scrollbar-thumb {
+  background-color: #2a2d35;
+  border-radius: 3px;
+}
+
+#detailcover {
+  border: none !important;
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+}
+
+.cover .badge {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  color: #000;
+  border-radius: 10px;
+  background-color: #fff;
+}
+
+.cover .read {
+  position: relative;
+  top: -20px;
+  width: 17px;
+  height: 17px;
+  display: inline-block;
+  padding: 2px;
+}
+
+.cover-height {
+  max-height: 100px;
+}
+
+.col-sm-2 a .cover-small {
+  margin: 5px;
+  max-height: 200px;
+}
+
+.btn-file {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-file input[type="file"] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  font-size: 100px;
+  text-align: right;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  outline: none;
+  background: white;
+  cursor: inherit;
+  display: block;
+}
+
+.btn-toolbar .btn,
+.discover .btn {
+  margin-bottom: 5px;
+}
+
+.button-link {
+  color: #fff;
+}
+
+.btn-primary.disabled,
+.btn-primary[disabled],
+fieldset[disabled] .btn-primary,
+.btn-primary.disabled:hover,
+.btn-primary[disabled]:hover,
+fieldset[disabled] .btn-primary:hover,
+.btn-primary.disabled:focus,
+.btn-primary[disabled]:focus,
+fieldset[disabled] .btn-primary:focus,
+.btn-primary.disabled:active,
+.btn-primary[disabled]:active,
+fieldset[disabled] .btn-primary:active,
+.btn-primary.disabled.active,
+.btn-primary[disabled].active,
+fieldset[disabled] .btn-primary.active {
+  background-color: #89b9e2;
+}
+
+.btn-toolbar > .btn + .btn,
+.btn-toolbar > .btn-group + .btn,
+.btn-toolbar > .btn + .btn-group,
+.btn-toolbar > .btn-group + .btn-group {
+  margin-left: 0;
+}
+
+.panel-body {
+  background-color: #151820;
+}
+
+.panel-default > .panel-heading {
+  background-color: #1a1d24;
+  border-color: #2a2d35;
+  color: white;
+}
+
+.panel-default {
+  border-color: #2a2d35;
+  background-color: #1a1d24;
+}
+
+/* Fix Bootstrap default #ddd top border between panel heading and body */
+.panel-group .panel-heading + .panel-collapse > .panel-body,
+.panel-group .panel-heading + .panel-collapse > .list-group {
+  border-top-color: #2a2d35 !important;
+}
+
+.panel-title > a {
+  color: #90aaf9;
+}
+
+.spinner {
+  margin: 0 41%;
+}
+
+.spinner2 {
+  margin: 0 41%;
+}
+
+.intend-form {
+  margin-left: 20px;
+}
+
+table .bg-dark-danger {
+  background-color: #d9534f;
+  color: #fff;
+}
+
+table .bg-dark-danger:hover {
+  background-color: #c9302c;
+}
+
+table .bg-primary:hover {
+  background-color: #1c5484;
+}
+
+.block-label {
+  display: block;
+}
+
+.form-control.fake-input {
+  position: absolute;
+  pointer-events: none;
+  top: 0;
+}
+
+input.pill {
+  position: absolute;
+  opacity: 0;
+}
+
+input.pill + label {
+  border: 2px solid #90aaf9;
+  border-radius: 15px;
+  color: #90aaf9;
+  cursor: pointer;
+  display: inline-block;
+  padding: 3px 15px;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+input.pill:checked + label {
+  background-color: #90aaf9;
+  border-color: #fff;
+  color: #fff;
+}
+
+input.pill:not(:checked) + label .glyphicon {
+  display: none;
+}
+
+.author-link {
+  display: inline-block;
+  margin-top: 10px;
+  width: 100px;
+}
+
+#remove-from-shelves .btn,
+#shelf-action-errors {
+  margin-left: 5px;
+}
+
+.tags_click,
+.serie_click,
+.language_click {
+  margin-right: 5px;
+}
+
+#meta-info {
+  height: 600px;
+  overflow-y: scroll;
+}
+
+.media-list {
+  padding-right: 15px;
+}
+
+#meta-info img {
+  max-height: 150px;
+  max-width: 100px;
+  cursor: pointer;
+}
+
+.padded-bottom {
+  margin-bottom: 15px;
+}
+
+.upload-format-input-text {
+  display: initial;
+}
+
+#btn-upload-format {
+  display: none;
+}
+
+.upload-cover-input-text {
+  display: initial;
+}
+
+#btn-upload-cover {
+  display: none;
+}
+
+.editable-buttons {
+  display: inline-block;
+  margin-left: 7px;
+}
+
+.editable-input {
+  display: inline-block;
+}
+
+.editable-cancel {
+  margin-bottom: 0 !important;
+  margin-left: 7px !important;
+}
+
+.editable-submit {
+  margin-bottom: 0 !important;
+}
+
+.filterheader {
+  margin-bottom: 20px;
+}
+
+.filterheader .btn {
+  background: transparent !important;
+  color: #e0e1e3 !important;
+  border: 1px solid #2a2d35 !important;
+  padding: 6px 10px !important;
+  font-size: 13px !important;
+}
+
+.filterheader .glyphicon {
+  font-size: 12px !important;
+}
+
+.filterheader .btn:hover {
+  border-color: #90aaf9 !important;
+  color: #90aaf9 !important;
+}
+
+.filterheader .btn.active,
+.filterheader .btn-primary.active {
+  background: #90aaf9 !important;
+  color: #111318 !important;
+  border-color: #90aaf9 !important;
+}
+
+.errorlink {
+  margin-top: 20px;
+}
+
+.emailconfig {
+  margin-top: 10px;
+}
+
+.modal-body .comments {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+div.log {
+  font-family: Courier New, serif;
+  font-size: 12px;
+  box-sizing: border-box;
+  height: 700px;
+  overflow-y: scroll;
+  border: 1px solid #2a2d35;
+  white-space: nowrap;
+  padding: 0.5em;
+  background-color: #151820;
+  color: #e3e4e4;
+}
+
+#detailcover {
+  cursor: zoom-in;
+}
+
+#detailcover:-webkit-full-screen {
+  cursor: zoom-out;
+  border: 0;
+}
+
+#detailcover:-moz-full-screen {
+  cursor: zoom-out;
+  border: 0;
+}
+
+#detailcover:-ms-fullscreen {
+  cursor: zoom-out;
+  border: 0;
+}
+
+#detailcover:fullscreen {
+  cursor: zoom-out;
+  border: 0;
+}
+
+.error-list {
+  margin-top: 5px;
+}
+
+#flash_success, #flash_danger {
+  z-index: 1000;
+  position: fixed;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  top: 42px;
+  margin: 0;
+  opacity: 0;
+  animation: fadeInOut 5s ease-in-out forwards;
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+  }
+  5% {
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  95% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Alert styling for dark theme */
+.alert-success {
+  background-color: #1a3a2a;
+  border-color: #2d5a3d;
+  color: #7dcea0;
+}
+
+.alert-danger {
+  background-color: #3a1a1a;
+  border-color: #5a2d2d;
+  color: #e07070;
+}
+
+.alert-info {
+  background-color: #1a2a3a;
+  border-color: #2d3d5a;
+  color: #7daece;
+}
+
+.alert-warning {
+  background-color: #3a3a1a;
+  border-color: #5a5a2d;
+  color: #cece7d;
+}
+
+/* Dropdown menus */
+.dropdown-menu {
+  background-color: #1a1d24;
+  border: 1px solid #2a2d35;
+}
+
+.dropdown-menu > li > a {
+  color: #e3e4e4;
+}
+
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: white;
+}
+
+/* Tooltip dark styling */
+.tooltip.bottom .tooltip-inner {
+  font-size: 13px;
+  font-family: "Outfit", sans-serif;
+  padding: 3px 10px;
+  border-radius: 4px;
+  background-color: #1a1d24;
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.5);
+  opacity: 1;
+  white-space: nowrap;
+  margin-top: -16px !important;
+  line-height: 1.71428571;
+  color: #e3e4e4;
+}
+
+/* Label colors for dark theme */
+label {
+  color: #e3e4e4;
+}
+
+/* Responsive breakpoints */
+@media (max-width: 767px) {
+  .row-fluid > .col-sm-2 {
+    width: 100% !important;
+  }
+  .row-fluid > .col-sm-2 > .navigation {
+    position: relative;
+    height: auto;
+    width: 100%;
+    padding-top: 16px !important;
+  }
+  .row-fluid > .col-sm-10 {
+    width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .navbar-header {
+    width: auto !important;
+  }
+  .navbar-default {
+    position: relative;
+    height: auto;
+  }
+  .row-fluid > .col-sm-10 {
+    margin-top: 20px;
+  }
+  .navbar-left {
+    padding-left: 15px;
+  }
+  div.well.col-sm-6.col-sm-offset-2 {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+/* ===================================================================
+   POLISH PASS 2 — Navbar links, book grid width, miscellaneous
+   =================================================================== */
+
+/* Navbar right links (Tasks, Admin, username, Logout): smaller, muted */
+.navbar-right > li > a {
+  font-size: 13px !important;
+  padding: 14px 10px !important;
+  color: #9d9ea0 !important;
+}
+
+.navbar-right > li > a:hover,
+.navbar-right > li > a:focus {
+  color: white !important;
+  background: transparent !important;
+}
+
+.navbar-right > li > a .glyphicon {
+  margin-right: 4px;
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+/* ---- Book grid: widen columns so covers are bigger ---- */
+/* Large screens: 5 per row (20% each, up from 16.67%) */
+@media (min-width: 1200px) {
+  .col-lg-2.book {
+    width: 20% !important;
+  }
+}
+
+/* Medium screens: keep 4 per row (25%) */
+@media (min-width: 768px) and (max-width: 1199px) {
+  .col-sm-3.book {
+    width: 25% !important;
+  }
+}
+
+/* Ensure book fills its column width */
+.container-fluid .book {
+  width: 100%;
+}
+
+/* ---- Book cover: remove leftover position:relative (now on container) ---- */
+.container-fluid .book .cover span .img {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+/* ---- "Cover not available" placeholder: hide the garish white ---- */
+/* Invert only placeholder images (text-based), real photo covers keep natural look */
+.container-fluid .book .cover img[alt] {
+  background: #1a1d24;
+}
+
+/* ---- Book title and meta: tighten spacing under covers ---- */
+.container-fluid .book .meta {
+  padding: 8px 4px 4px 4px;
+}
+
+.container-fluid .book .meta .title {
+  font-size: 14px !important;
+  line-height: 1.3;
+  margin-bottom: 4px !important;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.container-fluid .book .meta .author a {
+  font-size: 12px !important;
+  color: #9d9ea0 !important;
+}
+
+/* ---- Navbar search: align height of input-group-btn ---- */
+.navbar-form .input-group-btn {
+  vertical-align: top;
+}
+
+/* ---- Suppress hidden-sm text on navbar right on small viewports ---- */
+.navbar-right .hidden-sm {
+  display: inline !important;
+}
+
+/* ---- Navbar form: prevent search bar from overflowing ---- */
+.navbar-form.navbar-left {
+  max-width: calc(100vw - 700px);
+}
+
+.navbar-form .input-group {
+  width: 100%;
+  min-width: 200px;
+}
+
+/* ---- Book list view (table) improvements ---- */
+.books-table img {
+  border-radius: 4px;
+}
+
+/* ---- Shelf and series page covers (shelfdown.html) ---- */
+.shelf-down .container-fluid .book .cover {
+  aspect-ratio: 2 / 3;
+}
+
+/* ---- Detail cover image on book detail page ---- */
+#detailcover {
+  border-radius: 8px !important;
+  max-width: 200px;
+}
+
+/* ---- Bottom toolbar spacing ---- */
+.btn-toolbar {
+  margin-bottom: 0;
+}
+
+/* ---- Input group visual join (search bar) ---- */
+.input-group > .form-control:not(:last-child) {
+  border-right: none !important;
+}
+
+/* ---- navbar-collapse on desktop: align vertically ---- */
+@media (min-width: 768px) {
+  .navbar-collapse {
+    display: flex !important;
+    align-items: center;
+  }
+  .navbar-collapse .navbar-right {
+    display: flex;
+    align-items: center;
+    float: none !important;
+    margin: 0 !important;
+    justify-content: flex-end;
+    padding-right: 8px;
+  }
+}
+
+/* ===================================================================
+   BUGFIX PASS 3 — Scrollbar, modal, buttons, admin spacing
+   =================================================================== */
+
+/* ---- Book detail modal: fix layout in narrow side panel ---- */
+/* Use flex row so cover + meta sit side by side cleanly */
+#bookDetailsModal .single > .row {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  flex-wrap: nowrap;
+}
+
+#bookDetailsModal .single .col-sm-3,
+#bookDetailsModal .single .col-lg-3 {
+  float: none !important;
+  width: 120px !important;
+  flex: 0 0 120px;
+  padding: 0;
+}
+
+#bookDetailsModal .single #detailcover {
+  width: 120px !important;
+  max-width: 120px !important;
+  border-radius: 8px;
+}
+
+#bookDetailsModal .single .col-sm-9,
+#bookDetailsModal .single .col-lg-9 {
+  float: none !important;
+  flex: 1 1 0;
+  width: auto !important;
+  padding: 0;
+  min-width: 0;
+}
+
+/* Allow modal body to scroll when content is tall, no horizontal bleed */
+#bookDetailsModal .modal-body {
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: calc(100vh - 80px);
+  padding: 0;
+}
+
+/* Compact buttons inside the book detail modal / detail page toolbar */
+.book-meta .btn-toolbar .btn {
+  padding: 7px 14px !important;
+  font-size: 13px !important;
+}
+
+/* ---- Admin & settings: reduce h2 heading size — these are section labels,
+   not page titles, so 32px is too dominant ---- */
+body.admin h2,
+body.uiconfig h2,
+body.basicconfig h2,
+body.dbconfig h2,
+body.edituser h2,
+body.adduser h2 {
+  font-size: 20px !important;
+  margin-top: 28px !important;
+  margin-bottom: 14px !important;
+  font-weight: 600 !important;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #2a2d35;
+}
+
+/* ---- Admin page: tighten button sizes ---- */
+body.admin .btn,
+body.uiconfig .btn,
+body.basicconfig .btn,
+body.dbconfig .btn {
+  padding: 7px 16px !important;
+  font-size: 14px !important;
+}
+
+/* ---- Books table view: tighten top action buttons ---- */
+body.booklist .btn {
+  padding: 7px 14px !important;
+  font-size: 14px !important;
+}
+
+/* ---- Well (settings panels): slightly less padding ---- */
+.well {
+  padding: 32px !important;
+}
+
+/* ---- filterheader: ensure it doesn't create overflow ---- */
+.filterheader {
+  flex-wrap: wrap;
+}
+
+/* ---- Books sort-bar: consistent sizing ---- */
+.filterheader .btn {
+  padding: 6px 12px !important;
+  font-size: 13px !important;
+}
+
+/* ---- Navbar background: add subtle blur/fill so content scrolling
+   under it doesn't bleed through ---- */
+.navbar-default {
+  background: rgba(17, 19, 24, 0.92) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* ---- Modal header: give the close button proper top-right position ---- */
+#bookDetailsModal .modal-header {
+  display: flex;
+  justify-content: flex-end;
+  padding: 8px 0 16px 0 !important;
+}
+
+/* ---- Pagination: don't let the list items wrap awkwardly ---- */
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding-left: 0;
+  list-style: none;
+}
+
+.pagination > li > a,
+.pagination > li > span {
+  border-radius: 6px !important;
+  padding: 6px 12px;
+}
+
+/* ---- Table view: scrollable horizontal table without page overflow ---- */
+.books-table-wrapper,
+.table-responsive {
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+/* ---- Misc: prevent long unbreakable strings from overflowing cells ---- */
+td {
+  word-break: break-word;
+  max-width: 300px;
+}
+
+/* ===================================================================
+   MOBILE PASS — comprehensive responsive / touch support
+   =================================================================== */
+
+/* --- Tablets (768–991px): 3 books per row instead of 4.
+   At 768px viewport the sidebar takes 300px, leaving 468px of content.
+   4 columns = 117px each — too narrow. 3 = 156px, workable. --- */
+@media (min-width: 768px) and (max-width: 991px) {
+  .col-sm-3.book,
+  .col-lg-2.book {
+    width: 33.333% !important;
+  }
+}
+
+@media (max-width: 767px) {
+  /* --- Fix: let Bootstrap's collapse toggle work on mobile.
+     The desktop display:flex on .navbar-collapse is now scoped to
+     min-width:768px above, but we still need to enforce Bootstrap's
+     hide/show states here. --- */
+  .navbar-collapse.collapse:not(.in) {
+    display: none !important;
+  }
+  .navbar-collapse.in {
+    display: block !important;
+    background: rgba(17, 19, 24, 0.98);
+    border-top: 1px solid #2a2d35;
+    padding: 8px 16px 20px;
+  }
+
+  /* Restore normal vertical stacking for nav items inside collapse */
+  .navbar-collapse .navbar-nav > li {
+    float: none;
+  }
+  .navbar-collapse .navbar-nav > li > a {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 14px !important;
+    color: #e0e1e3 !important;
+  }
+  .navbar-collapse .navbar-right {
+    float: none !important;
+    margin: 0 !important;
+  }
+
+  /* --- Navbar header: replace absolute-positioning layout with flex.
+     On desktop both .navbar-brand and .navbar-toggle are position:absolute,
+     which leaves .navbar-header with no in-flow children — it collapses to
+     a zero-content floated box that Bootstrap then widens incorrectly,
+     producing horizontal overflow. On mobile we bring both back into flow. --- */
+  .navbar-default {
+    height: auto;
+    overflow: visible;
+  }
+  .navbar-header {
+    width: 100% !important;
+    height: auto !important;
+    float: none !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 12px !important;
+    min-height: 56px;
+    box-sizing: border-box;
+  }
+  /* Brand first (left), toggle second (right) via CSS order */
+  .navbar-brand {
+    position: static !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    font-size: 20px !important;
+    display: flex !important;
+    align-items: center;
+    order: 1;
+  }
+  .navbar-brand::before {
+    height: 36px !important;
+    width: 36px !important;
+    margin-right: 8px !important;
+  }
+  .navbar-toggle {
+    position: static !important;
+    top: auto !important;
+    right: auto !important;
+    margin: 0 !important;
+    float: none !important;
+    order: 2;
+  }
+
+  /* --- Search bar: full-width row below the logo/toggle header --- */
+  .navbar-form.navbar-left {
+    max-width: 100%;
+    width: 100%;
+    padding: 4px 12px !important;
+    margin: 0 !important;
+    float: none !important;
+  }
+  .navbar-form .input-group {
+    width: 100% !important;
+  }
+
+  /* --- Prevent horizontal overflow at body level without clipping inner content --- */
+  body {
+    overflow-x: hidden;
+  }
+
+  /* --- Hide the empty sidebar column.
+     On mobile, intention.js always moves #scnd-nav into the navbar
+     collapse — the .col-sm-2 wrapper is left empty. Hiding it removes
+     the dead whitespace block and lets .col-sm-10 fill the page. --- */
+  .row-fluid > .col-sm-2 {
+    display: none !important;
+  }
+  .row-fluid > .col-sm-10 {
+    width: 100% !important;
+  }
+
+  /* --- Book grid: 2 per row (col-xs-6 = 50%).
+     Also neutralize Bootstrap's .row negative margins — they cause
+     the row to extend (15px − column-padding) past the viewport on each
+     side, producing a horizontal scrollbar. With margin 0, the row sits
+     inside the column padding exactly. Book column padding keeps the
+     visual gutter between covers. --- */
+  .container-fluid .book {
+    width: 50% !important;
+    max-width: none !important;
+    padding-left: 6px !important;
+    padding-right: 6px !important;
+  }
+  .row.display-flex {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  /* --- Content column: use 15px to match Bootstrap's .row negative margins,
+     preventing the -3px left-clip when rows are nested inside. --- */
+  .row-fluid > .col-sm-10 {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+  }
+
+  /* --- Typography: scale down headings --- */
+  h1 {
+    font-size: 26px !important;
+    margin-bottom: 14px;
+  }
+  h2 {
+    font-size: 20px !important;
+    margin-bottom: 16px;
+  }
+
+  /* --- Book detail modal: full-width bottom sheet on mobile --- */
+  #bookDetailsModal > .modal-lg {
+    max-width: 100%;
+    width: 100%;
+    position: fixed;
+    top: auto;
+    bottom: 0;
+    margin: 0;
+  }
+  #bookDetailsModal > .modal-lg > .modal-content {
+    height: auto !important;
+    max-height: 90vh;
+    overflow-y: auto;
+    border-radius: 16px 16px 0 0 !important;
+    border-left: none !important;
+    border-bottom: none !important;
+    padding: 20px !important;
+  }
+  /* Bottom-sheet slide animation on mobile */
+  .modal.fade .modal-dialog {
+    -webkit-transform: translate(0, 100%);
+    -ms-transform: translate(0, 100%);
+    transform: translate(0, 100%);
+  }
+  .modal.in .modal-dialog {
+    -webkit-transform: translate(0, 0);
+    -ms-transform: translate(0, 0);
+    transform: translate(0, 0);
+  }
+
+  /* --- Modal body: stack cover + meta vertically on mobile.
+     Reset Bootstrap .row negative margins to avoid left-clip under
+     overflow-x:hidden that modal imposes. --- */
+  #bookDetailsModal .modal-body .row {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  #bookDetailsModal .single > .row {
+    flex-wrap: wrap;
+  }
+  #bookDetailsModal .single .col-sm-3,
+  #bookDetailsModal .single .col-lg-3 {
+    width: 100% !important;
+    flex: 0 0 100% !important;
+    margin-bottom: 16px;
+    text-align: center;
+    max-height: 200px;
+    overflow: hidden;
+  }
+  #bookDetailsModal .single #detailcover {
+    max-width: 130px !important;
+    max-height: 195px !important;
+    margin: 0 auto;
+  }
+  #bookDetailsModal .single .col-sm-9,
+  #bookDetailsModal .single .col-lg-9 {
+    width: 100% !important;
+    flex: 0 0 100% !important;
+  }
+  #bookDetailsModal .modal-body {
+    max-height: calc(90vh - 60px);
+  }
+
+  /* --- Well: reduce padding --- */
+  .well {
+    padding: 20px !important;
+    border-radius: 12px !important;
+  }
+
+  /* --- Filterheader: horizontal scroll so all sort buttons stay in one row --- */
+  .filterheader {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    flex-wrap: nowrap;
+    padding-bottom: 4px;
+  }
+
+  /* --- Pagination: center and wrap --- */
+  .pagination {
+    justify-content: center;
+  }
+
+  /* --- Log viewer: shorter on mobile --- */
+  div.log {
+    height: 300px;
+  }
+
+  /* --- Touch targets: nav links need min 44px tap area --- */
+  .navigation li a {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+
+  /* --- Flash toasts: wider on mobile --- */
+  #flash_success,
+  #flash_danger {
+    width: 90%;
+    text-align: center;
+  }
+
+  /* --- Admin section headings already reduced to 20px,
+     tighten a bit more on mobile --- */
+  body.admin h2,
+  body.uiconfig h2,
+  body.basicconfig h2,
+  body.dbconfig h2,
+  body.edituser h2,
+  body.adduser h2 {
+    font-size: 17px !important;
+    margin-top: 20px !important;
+    margin-bottom: 10px !important;
+  }
+}
+
+/* --- Admin page: make the user summary table scrollable on mobile rather
+   than overflowing or compressing. display:block lets overflow-x apply to
+   <table> elements. white-space:nowrap prevents columns from compressing
+   so they keep natural width and trigger horizontal scroll instead. --- */
+@media (max-width: 767px) {
+  body.admin #table_user {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    max-width: 100%;
+  }
+  body.admin #table_user th,
+  body.admin #table_user td {
+    white-space: nowrap;
+  }
+}
+
+/* --- Very small phones (< 480px): keep 2-per-row, tighten spacing --- */
+@media (max-width: 479px) {
+  h1 {
+    font-size: 22px !important;
+  }
+  h2 {
+    font-size: 18px !important;
+  }
+  .well {
+    padding: 14px !important;
+    border-radius: 8px !important;
+  }
+  /* Keep 15px to match Bootstrap .row negative margins — prevents content
+     inside nested .row elements from clipping left (8px - 15px = -7px clip). */
+  .row-fluid > .col-sm-10 {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+  }
+  .container-fluid .book .meta .title {
+    font-size: 12px !important;
+  }
+  .container-fluid .book .meta .author a {
+    font-size: 11px !important;
+  }
+}
+
+/* ===================================================================
+   FIGMA ALIGNMENT PASS — match /u/spiky_odradek Figma mockup
+   =================================================================== */
+
+/* --- 1. Rating stars: make filled stars amber, empty stars dark-visible --- */
+.rating .glyphicon-star.good {
+  color: #f5a623 !important;
+}
+.rating .glyphicon-star-empty {
+  color: #3a3d47 !important;
+}
+
+/* --- 2. Hide rating stars inside grid book cards (Figma: stars only in detail panel) ---
+   Scope: .container-fluid .book .meta .rating = grid cards only.
+   Detail panel uses .book-meta .rating — not affected. */
+.container-fluid .book .meta .rating {
+  display: none !important;
+}
+
+/* --- 3. Tag / genre chips: colorful pills in book detail --- */
+
+/* 3a. Genre tags: teal */
+.book-meta .tags .btn-xs.btn-info {
+  background-color: rgba(32, 178, 170, 0.18) !important;
+  color: #2ecece !important;
+  border: 1px solid rgba(46, 206, 206, 0.35) !important;
+  border-radius: 20px !important;
+  padding: 3px 12px !important;
+  font-size: 12px !important;
+  font-weight: 500;
+  text-decoration: none !important;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+.book-meta .tags .btn-xs.btn-info:hover {
+  background-color: rgba(46, 206, 206, 0.28) !important;
+  border-color: #2ecece !important;
+  color: #7fffff !important;
+}
+/* 3b. Identifier chips: green */
+.book-meta .identifiers .btn-xs.btn-success {
+  background-color: rgba(46, 160, 100, 0.18) !important;
+  color: #5dcea0 !important;
+  border: 1px solid rgba(93, 206, 160, 0.35) !important;
+  border-radius: 20px !important;
+  padding: 3px 12px !important;
+  font-size: 12px !important;
+}
+/* 3c. Language label: indigo pill */
+.book-meta .languages .label-default {
+  background-color: rgba(90, 120, 200, 0.18) !important;
+  color: #90aaf9 !important;
+  border: 1px solid rgba(144, 170, 249, 0.35) !important;
+  border-radius: 20px !important;
+  padding: 3px 12px !important;
+  font-size: 12px !important;
+  font-weight: 400;
+}
+/* 3d. Tags section: flex wrap so chips reflow naturally */
+.book-meta .tags p {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 6px !important;
+  align-items: center;
+}
+/* 3e. Hide the redundant glyphicon-tags icon before chip list */
+.book-meta .tags p > span.glyphicon-tags {
+  display: none !important;
+}
+
+/* --- 4. Sidebar: remove glyphicon icons from nav links (Figma: text-only) --- */
+
+/* 4a. Hide all glyphicons inside sidebar nav links */
+.col-sm-2 > .navigation li a > span.glyphicon {
+  display: none !important;
+}
+/* 4b. Tighten left padding since icon gap is gone */
+.navigation li a {
+  padding-left: 10px;
+}
+/* 4c. Nav links: flex so badge count is pushed to right */
+.navigation li:not(.create-shelf):not(.nav-head) a {
+  display: flex !important;
+  justify-content: space-between;
+  align-items: center;
+}
+/* 4d. Shelf badge count: muted pill */
+.navigation li a .badge {
+  background-color: #2a2d35 !important;
+  color: #9d9ea0 !important;
+  border-radius: 10px;
+  font-size: 10px;
+  font-weight: 400;
+  flex-shrink: 0;
+}
+
+/* --- 5. Navbar: reduce height 94px → 60px, update all dependent offsets --- */
+
+.navbar-default {
+  height: 60px !important;
+}
+.navbar-header {
+  height: 60px !important;
+}
+/* Brand: smaller icon + font */
+.navbar-brand {
+  margin: 8px 8px !important;
+  font-size: 20px !important;
+}
+.navbar-brand::before {
+  height: 32px !important;
+  width: 32px !important;
+}
+/* Sidebar: push down by new navbar height */
+.col-sm-2 > .navigation {
+  padding-top: 60px !important;
+}
+/* Content column: push down by new navbar height */
+.row-fluid > .col-sm-10 {
+  margin-top: 60px !important;
+}
+/* Navbar form/collapse: re-center vertically */
+.navbar-form,
+.navbar-collapse {
+  margin: 9px 0 !important;
+}
+.navbar-left {
+  margin-top: 10px !important;
+}
+/* Flash toast: adjust vertical position */
+#flash_success, #flash_danger {
+  top: 30px !important;
+}
+
+/* --- 6. Filterheader: replace icon-only buttons with text labels --- */
+
+/* 6a. Hide all glyphicons inside filterheader buttons */
+.filterheader .btn .glyphicon {
+  display: none !important;
+}
+/* 6b. Text labels for sort buttons (index.html, shelf.html, author.html) */
+.filterheader #new::after     { content: "Date ↓"; }
+.filterheader #old::after     { content: "Date ↑"; }
+.filterheader #asc::after     { content: "Title A–Z"; }
+.filterheader #desc::after    { content: "Title Z–A"; }
+.filterheader #auth_az::after { content: "Author A–Z"; }
+.filterheader #auth_za::after { content: "Author Z–A"; }
+.filterheader #pub_new::after { content: "Pub. ↓"; }
+.filterheader #pub_old::after { content: "Pub. ↑"; }
+.filterheader #hot_asc::after  { content: "Hot ↑"; }
+.filterheader #hot_desc::after { content: "Hot ↓"; }
+/* 6c. Buttons need enough width for text labels */
+.filterheader .btn {
+  min-width: 68px !important;
+  white-space: nowrap !important;
+}
+/* 6d. Visual separation before view-toggle buttons (Grid / List / Table) */
+.filterheader #grid {
+  margin-left: 10px !important;
+}
+
+/* --- 7. Book grid: 6 per row on large screens, tighter gutter --- */
+
+@media (min-width: 1200px) {
+  .col-lg-2.book {
+    width: 16.6667% !important;
+  }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+  .col-sm-3.book,
+  .col-lg-2.book {
+    width: 20% !important;
+  }
+}
+/* Tighter horizontal gutter to match Figma dense grid */
+.container-fluid .book {
+  padding-left: 6px !important;
+  padding-right: 6px !important;
+}
+.row.display-flex {
+  margin-left: -6px !important;
+  margin-right: -6px !important;
+}
+
+/* --- 8. Book meta: left-align text (Figma: left-aligned) --- */
+
+.container-fluid .book .meta .title {
+  text-align: left !important;
+}
+.container-fluid .book .meta .author {
+  text-align: left !important;
+}
+p.series {
+  text-align: left !important;
+}
+
+/* --- 9. Book card hover: lift + shadow feedback --- */
+
+.container-fluid .book .cover {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.container-fluid .book:hover .cover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.65) !important;
+}
+.container-fluid .book:hover .meta .title {
+  color: #90aaf9 !important;
+}
+
+/* --- 10. Discover section: suppress extra heading + collapse spacing ---
+   Template: <div class="discover random-books"><h2 class="random-books">
+             <div class="discover load-more"><h2 class="{{title}}">
+   Note: .new-books in existing CSS is dead code (no such class in templates). */
+
+/* 10a. Visually suppress "Discover (Random Books)" h2 */
+h2.random-books {
+  font-size: 0 !important;
+  margin: 0 !important;
+  height: 0;
+  overflow: hidden;
+  padding: 0 !important;
+}
+/* 10b. Reduce discover section bottom gap */
+.container-fluid .discover.random-books {
+  margin-bottom: 8px !important;
+}
+/* 10c. Remove divider + compress spacing before main section heading */
+.container-fluid .discover.load-more {
+  border-top: none !important;
+}
+.container-fluid .discover.load-more h2 {
+  font-size: 32px !important;
+  font-weight: 700 !important;
+  margin: 8px 0 20px 0 !important;
+  letter-spacing: -0.5px;
+}
+
+/* --- 11. Book detail panel: cover + typography --- */
+
+/* 11a. Detail cover: larger, rounded shadow */
+#bookDetailsModal .single #detailcover {
+  width: 140px !important;
+  max-width: 140px !important;
+  border-radius: 10px !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6) !important;
+}
+/* 11b. Book title in panel: fits 560px side panel */
+#bookDetailsModal .book-meta #title {
+  font-size: 22px !important;
+  font-weight: 700 !important;
+  margin-bottom: 6px !important;
+  line-height: 1.25;
+}
+/* 11c. Author name in panel: muted */
+#bookDetailsModal .book-meta .author a {
+  font-size: 16px !important;
+  color: #9d9ea0 !important;
+  font-weight: 400 !important;
+}
+/* 11d. Rating stars in panel: slightly larger */
+#bookDetailsModal .book-meta .rating .glyphicon {
+  font-size: 16px !important;
+}
+
+/* --- 12. Author / category / series list pages: badges + rows --- */
+
+/* 12a. Entry count badge: muted pill */
+.container1 .badge {
+  background-color: #2a2d35 !important;
+  color: #9d9ea0 !important;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 400;
+  padding: 2px 8px;
+  min-width: 24px;
+  text-align: center;
+}
+/* 12b. List rows: subtle hover */
+.container1 .row {
+  padding: 6px 0;
+  border-bottom: 1px solid #1e2028;
+  transition: background-color 0.15s ease;
+}
+.container1 .row:hover {
+  background-color: rgba(255, 255, 255, 0.03);
+  border-radius: 6px;
+}
+/* 12c. Character filter buttons: compact */
+.filterheader .btn-group.character .btn.char {
+  padding: 4px 8px !important;
+  font-size: 12px !important;
+  min-width: 28px;
+  text-align: center;
+}
+
+/* --- 13. Nav section headers: slightly dimmer/tighter --- */
+
+.navigation .nav-head {
+  font-size: 11px !important;
+  letter-spacing: 2px !important;
+  color: #555860 !important;
+  margin: 20px 0 8px 0 !important;
+}
+
+/* --- 14. List page h1: scale down for category/author/series browse pages --- */
+
+body.categorylist h1,
+body.serieslist h1,
+body.authorlist h1,
+body.publisherlist h1,
+body.languagelist h1,
+body.ratinglist h1,
+body.formatlist h1 {
+  font-size: 28px !important;
+  margin-bottom: 16px !important;
+}
+
+/* --- Mobile: restore auto height for navbar (overrides 60px !important above) --- */
+@media (max-width: 767px) {
+  .navbar-default {
+    height: auto !important;
+  }
+  .navbar-header {
+    height: auto !important;
+  }
+  .row-fluid > .col-sm-10 {
+    margin-top: 20px !important;
+  }
+}
+
+/* ===================================================================
+   FIGMA FIDELITY PASS — pixel-closer match to /u/spiky_odradek mockup
+   =================================================================== */
+
+/* --- FF0. Brand name: show "Calibre" instead of "Calibre-Web".
+   The navbar-brand text node can't be targeted directly; instead we
+   make the text transparent and inject "Calibre" via ::after.
+   The ::before pseudo-element holds the icon image (unaffected by color).
+   This works even without a template change. --- */
+.navbar-brand {
+  color: transparent !important;
+}
+.navbar-brand::after {
+  content: "Calibre";
+  color: white;
+  font-family: "Outfit", sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  letter-spacing: -0.2px;
+}
+
+/* --- FF1. Hide random-books "Discover" section entirely.
+   Figma shows a single unified books grid; the separate discover
+   section at the top of the home page creates visual confusion. --- */
+.container-fluid .discover.random-books {
+  display: none !important;
+}
+
+/* --- FF2. "My Library" heading override on the books home page.
+   The template renders h2.Books (class matches the title text).
+   We suppress the original "Books" text and inject "My Library"
+   so the page matches the Figma heading without a template change.
+   body class on the home page is "newest odradek". --- */
+body.newest .discover.load-more h2.Books {
+  font-size: 0 !important;
+  line-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+body.newest .discover.load-more h2.Books::before {
+  content: "My Library";
+  display: block;
+  font-size: 36px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.5px;
+  margin-bottom: 20px;
+  line-height: 1.15;
+}
+
+/* --- FF3. Sidebar: condense width 300px → 260px.
+   Figma sidebar is narrower, giving more breathing room to the content area.
+   All dependent measurements (navigation panel, content column, navbar header)
+   are updated in lockstep. --- */
+.row-fluid > .col-sm-2 {
+  width: 260px !important;
+}
+.row-fluid > .col-sm-10 {
+  width: calc(100% - 260px) !important;
+}
+.col-sm-2 > .navigation {
+  width: 260px !important;
+}
+.navbar-header {
+  width: 260px !important;
+}
+
+/* --- FF4. Sidebar active item: left accent bar (Figma style) --- */
+.navigation li.active > a {
+  border-left: 3px solid #90aaf9 !important;
+  padding-left: 7px !important;
+  border-radius: 0 6px 6px 0 !important;
+}
+
+/* --- FF5. Sidebar nav-head: add chevron expand indicator.
+   Matches the Figma collapsible section style. --- */
+.navigation .nav-head {
+  display: flex !important;
+  justify-content: space-between;
+  align-items: center;
+}
+.navigation .nav-head::after {
+  content: "▾";
+  font-size: 14px;
+  opacity: 0.45;
+  font-weight: 400;
+  letter-spacing: 0;
+  flex-shrink: 0;
+}
+
+/* --- FF6. Sidebar: pin "About" link to bottom of fixed panel.
+   Figma shows a "Calibre Settings" link at the very bottom of the sidebar,
+   always visible regardless of scroll position.
+   padding-bottom on navigation reserves space so last item isn't occluded. --- */
+.col-sm-2 > .navigation {
+  padding-bottom: 52px !important;
+}
+#nav_about {
+  position: fixed !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  width: 260px !important;
+  background: #1a1d24 !important;
+  border-top: 1px solid #2a2d35 !important;
+  padding: 10px 16px !important;
+  margin: 0 !important;
+  z-index: 150 !important;
+  list-style: none;
+}
+#nav_about > a,
+#nav_about a {
+  font-size: 13px !important;
+  color: #555860 !important;
+  padding: 4px 0 !important;
+  border-left: none !important;
+  background: none !important;
+  border-radius: 0 !important;
+}
+#nav_about > a:hover,
+#nav_about a:hover {
+  color: #9d9ea0 !important;
+  background: none !important;
+}
+#nav_about.active a {
+  border-left: none !important;
+  background: none !important;
+  color: #555860 !important;
+}
+
+/* --- FF7. Sidebar "Create a Shelf": plain text link (not outline button) --- */
+.navigation .create-shelf a {
+  border: none !important;
+  color: #6589f6 !important;
+  background: transparent !important;
+  padding: 8px 10px !important;
+  font-size: 14px !important;
+  border-radius: 6px !important;
+}
+.navigation .create-shelf a::before {
+  content: "+ ";
+}
+.navigation .create-shelf a:hover {
+  color: #90aaf9 !important;
+  background: rgba(144, 170, 249, 0.08) !important;
+}
+
+/* --- FF8. Filterheader: thin separator below sort bar before the book grid --- */
+.filterheader {
+  border-bottom: 1px solid #1e2028 !important;
+  margin-bottom: 20px !important;
+  padding-bottom: 14px !important;
+}
+
+/* --- FF9. Filterheader active sort: softer accent (less aggressive fill) --- */
+.filterheader .btn.active,
+.filterheader .btn-primary.active {
+  background: rgba(144, 170, 249, 0.12) !important;
+  color: #90aaf9 !important;
+  border-color: rgba(144, 170, 249, 0.45) !important;
+}
+
+/* --- FF10. Book detail modal: increase cover to 160px (matches Figma panel) --- */
+#bookDetailsModal .single .col-sm-3,
+#bookDetailsModal .single .col-lg-3 {
+  flex: 0 0 160px !important;
+  width: 160px !important;
+}
+#bookDetailsModal .single #detailcover {
+  width: 160px !important;
+  max-width: 160px !important;
+}
+
+/* --- FF11. Book detail action buttons: pill-shaped, evenly spread across width --- */
+.book-meta > .btn-toolbar {
+  display: flex !important;
+  gap: 8px !important;
+  flex-wrap: nowrap !important;
+}
+.book-meta > .btn-toolbar .btn {
+  flex: 1 1 0 !important;
+  text-align: center !important;
+  border-radius: 20px !important;
+  padding: 8px 10px !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+/* --- FF12. Book detail metadata: publisher/date — smaller and muted --- */
+.book-meta .publishers,
+.book-meta .publishing-date {
+  font-size: 14px !important;
+  color: #6b6e76 !important;
+  margin-top: 2px !important;
+}
+
+/* --- FF13. Navbar right: icon-only links (hide text labels).
+   The template wraps label text in .hidden-sm, but a prior CSS rule
+   forces those spans visible. We reverse that so nav links show
+   glyphicons only, keeping the navbar compact like the Figma. --- */
+#main-nav > li > a .hidden-sm {
+  display: none !important;
+}
+#main-nav > li > a .glyphicon {
+  font-size: 15px !important;
+  margin: 0 !important;
+  opacity: 0.75;
+}
+#main-nav > li > a {
+  padding: 14px 12px !important;
+}
+
+/* --- FF14. Cover card: radius 6px (Figma shows slightly less rounded than 8px) --- */
+.container-fluid .book .cover {
+  border-radius: 6px !important;
+}
+
+/* --- FF15. Navbar Upload button: subtle dark, not filled accent blue --- */
+.navbar .btn-file,
+.navbar-form .btn-file {
+  background-color: transparent !important;
+  color: #9d9ea0 !important;
+  border: 1px solid #2a2d35 !important;
+  font-size: 13px !important;
+  padding: 5px 14px !important;
+  border-radius: 8px !important;
+}
+.navbar .btn-file:hover,
+.navbar-form .btn-file:hover {
+  color: white !important;
+  border-color: #90aaf9 !important;
+  background: rgba(144, 170, 249, 0.08) !important;
+}
+
+/* --- FF16. Bootstrap-table dark theme (Books List / book_table.html page) --- */
+.fixed-table-container,
+.fixed-table-container .table {
+  border-color: #2a2d35 !important;
+}
+.fixed-table-toolbar {
+  margin-bottom: 8px;
+}
+.fixed-table-toolbar .btn-group .btn,
+.fixed-table-toolbar > .btn {
+  background-color: #1a1d24 !important;
+  color: #9d9ea0 !important;
+  border: 1px solid #2a2d35 !important;
+  font-size: 13px !important;
+  padding: 6px 12px !important;
+  border-radius: 6px !important;
+}
+.fixed-table-toolbar .btn-group .btn:hover,
+.fixed-table-toolbar > .btn:hover {
+  color: white !important;
+  border-color: #90aaf9 !important;
+  background-color: rgba(144, 170, 249, 0.08) !important;
+}
+.fixed-table-toolbar .columns-right .dropdown-menu {
+  background: #1a1d24 !important;
+  border: 1px solid #2a2d35 !important;
+  border-radius: 8px !important;
+}
+.fixed-table-toolbar .columns-right .dropdown-menu label {
+  color: #e3e4e4 !important;
+  font-weight: 400;
+}
+.fixed-table-pagination .pagination-detail,
+.fixed-table-pagination .pagination-info {
+  color: #6b6e76 !important;
+  font-size: 13px;
+}
+
+/* --- FF17. Mobile: undo fixed positioning for About link on small screens --- */
+@media (max-width: 767px) {
+  #nav_about {
+    position: static !important;
+    width: auto !important;
+    background: transparent !important;
+    border-top: 1px solid #2a2d35 !important;
+    padding: 12px 10px !important;
+  }
+  .col-sm-2 > .navigation {
+    padding-bottom: 16px !important;
+  }
+  /* Restore sidebar width to full on mobile */
+  .row-fluid > .col-sm-2 {
+    width: 100% !important;
+  }
+  .row-fluid > .col-sm-10 {
+    width: 100% !important;
+  }
+  /* FF3 sets .navbar-header to 260px (no media guard) — must be reset here,
+     after FF3 in cascade order, so the mobile flex header is full-width. */
+  .navbar-header {
+    width: 100% !important;
+  }
+  /* Search input-group: Bootstrap table-cell layout overflows on mobile.
+     Switch to flex so the input takes remaining space and the button stays fixed. */
+  .navbar-form .input-group {
+    display: flex !important;
+  }
+  .navbar-form .input-group .form-control {
+    flex: 1 1 0 !important;
+    min-width: 0 !important;
+    width: auto !important;
+  }
+  .navbar-form .input-group-btn {
+    flex: 0 0 auto !important;
+    width: auto !important;
+    display: flex !important;
+    align-items: center;
+  }
+}
+
+/* ===================================================================
+   BODY-CLASS CORRECTIONS — actual page identifiers from web.py/admin.py
+   Several prior rules used wrong class names; corrected below.
+   =================================================================== */
+
+/* --- BC1. "My Library" heading: broadened to all sort orders.
+   The home page h2 always has class="Books" regardless of sort param.
+   Removed body.newest scope so it fires for all sort orders. --- */
+.discover.load-more h2.Books {
+  font-size: 0 !important;
+  line-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.discover.load-more h2.Books::before {
+  content: "My Library";
+  display: block;
+  font-size: 36px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.5px;
+  margin-bottom: 20px;
+  line-height: 1.15;
+}
+
+/* --- BC2. Basic Configuration page: actual class is "config" not "basicconfig" --- */
+body.config h2 {
+  font-size: 20px !important;
+  margin-top: 28px !important;
+  margin-bottom: 14px !important;
+  font-weight: 600 !important;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #2a2d35;
+}
+body.config .btn {
+  padding: 7px 16px !important;
+  font-size: 14px !important;
+}
+
+/* --- BC3. Add new user page: actual class is "newuser" not "adduser" --- */
+body.newuser h2 {
+  font-size: 20px !important;
+  margin-top: 28px !important;
+  margin-bottom: 14px !important;
+  font-weight: 600 !important;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #2a2d35;
+}
+body.newuser .btn {
+  padding: 7px 16px !important;
+  font-size: 14px !important;
+}
+
+/* --- BC4. Books List table: actual class is "book_table" not "booklist".
+   Tighten the large action div-buttons (Merge, Clear, Edit, Exchange). --- */
+body.book_table .btn {
+  padding: 6px 14px !important;
+  font-size: 13px !important;
+}
+body.book_table h2 {
+  font-size: 28px !important;
+  margin-bottom: 20px !important;
+}
+
+/* --- BC5. List page h1 body-class corrections ---
+   actual: langlist, ratingslist, formatslist (not languagelist, ratinglist, formatlist) */
+body.langlist h1,
+body.ratingslist h1,
+body.formatslist h1,
+body.downloadlist h1 {
+  font-size: 28px !important;
+  margin-bottom: 16px !important;
+}
+
+/* --- BC6. Profile page: actual class is "me" --- */
+body.me h2 {
+  font-size: 20px !important;
+  margin-top: 28px !important;
+  margin-bottom: 14px !important;
+  font-weight: 600 !important;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #2a2d35;
+}
+body.me .btn {
+  padding: 7px 16px !important;
+  font-size: 14px !important;
+}
+
+/* --- BC7. Login page: actual class is "login" --- */
+body.login h2 {
+  font-size: 24px !important;
+  margin-bottom: 20px !important;
+}
+
+/* --- BC8. Broad admin/config button fix: ensure all config pages have compact buttons --- */
+body.admin .btn,
+body.uiconfig .btn,
+body.config .btn,
+body.dbconfig .btn,
+body.edituser .btn,
+body.newuser .btn,
+body.usertable .btn {
+  padding: 7px 16px !important;
+  font-size: 14px !important;
+}
+
+/* ===================================================================
+   COMPREHENSIVE REFINEMENT PASS — CR
+   Final Figma fidelity polish, pixel-closer layout, micro-fixes.
+   =================================================================== */
+
+/* --- CR1. Navbar icon: replace Calibre-Web 'e' with Calibre-style
+   colored bars icon. 4 vertical rects of varying heights (red, amber,
+   purple, blue) on a 20×20 viewbox — closely echoes the real Calibre
+   application icon. --- */
+.navbar-brand::before {
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><rect x='0.5' y='11' width='3.5' height='9' rx='1.5' fill='%23c73a42'/><rect x='5.5' y='4' width='3.5' height='16' rx='1.5' fill='%23d97c2a'/><rect x='10.5' y='1' width='3.5' height='19' rx='1.5' fill='%237a52b0'/><rect x='15.5' y='6' width='3.5' height='14' rx='1.5' fill='%234476c4'/></svg>") !important;
+  background-color: transparent !important;
+}
+
+/* --- CR2. Content column: breathing room so the page heading sits
+   comfortably below the fixed navbar instead of flush against it. --- */
+.row-fluid > .col-sm-10 {
+  padding-top: 20px !important;
+}
+
+/* --- CR3. "My Library" heading: bump pseudo-element size to match the
+   global h1 (42 px) so it reads with the correct visual weight. --- */
+.discover.load-more h2.Books::before {
+  font-size: 42px !important;
+  letter-spacing: -0.8px !important;
+  margin-bottom: 16px !important;
+}
+/* Also cover the body.newest-scoped rule from the earlier FF2 pass */
+body.newest .discover.load-more h2.Books::before {
+  font-size: 42px !important;
+  letter-spacing: -0.8px !important;
+}
+
+/* --- CR4. Book detail: hide the static "Download :" label button.
+   Template emits <button id="Download">Download :</button> as a
+   non-functional label before the actual format links. It breaks
+   the even pill-button row that the Figma design shows. --- */
+button#Download {
+  display: none !important;
+}
+
+/* --- CR5. Book detail action buttons: hide glyphicons so buttons
+   show text-only labels, matching the Figma's minimal pill style.
+   The Bootstrap caret on dropdown toggles is hidden too. --- */
+.book-meta .btn-toolbar .btn .glyphicon,
+.book-meta .btn-toolbar .btn .caret {
+  display: none !important;
+}
+
+/* --- CR6. Author list sort button: replace "B,A <-> A B" text.
+   The template injects <b>B,A <-> A B</b> inside #sort_name; we
+   zero the <b> and inject a cleaner label via ::after. --- */
+.filterheader #sort_name b {
+  font-size: 0 !important;
+  visibility: hidden;
+  display: inline-block;
+  width: 0;
+}
+.filterheader #sort_name::after {
+  content: "Author Sort" !important;
+  font-size: 13px !important;
+  font-weight: 400 !important;
+  visibility: visible;
+}
+
+/* --- CR7. Horizontal scrollbar on table-responsive wrappers. --- */
+.table-responsive::-webkit-scrollbar {
+  height: 5px;
+}
+.table-responsive::-webkit-scrollbar-track {
+  background: #111318;
+}
+.table-responsive::-webkit-scrollbar-thumb {
+  background-color: #2a2d35;
+  border-radius: 3px;
+}
+.table-responsive {
+  scrollbar-width: thin;
+  scrollbar-color: #2a2d35 #111318;
+}
+
+/* --- CR8. Book detail (non-modal full page): large cover with shadow.
+   body.book is the exact class set by the /book/<id> route.
+   The modal-specific rule (higher specificity) still overrides to 180px. --- */
+body.book #detailcover {
+  max-width: 220px !important;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* --- CR8b. Full detail page: move action buttons to BOTTOM of metadata
+   column (matching Figma layout). The modal keeps its own layout. --- */
+body.book .book-meta {
+  display: flex !important;
+  flex-direction: column !important;
+}
+body.book .book-meta > .btn-toolbar {
+  order: 20 !important;
+  margin-top: 24px !important;
+  padding-top: 16px !important;
+  border-top: 1px solid #2a2d35 !important;
+}
+body.book .book-meta > .comments {
+  order: 5 !important;
+}
+
+/* --- CR9. Book detail modal: larger cover (180px → 32% of 560px panel)
+   to better match the Figma panel proportions. --- */
+#bookDetailsModal .single .col-sm-3,
+#bookDetailsModal .single .col-lg-3 {
+  flex: 0 0 180px !important;
+  width: 180px !important;
+}
+#bookDetailsModal .single #detailcover {
+  width: 180px !important;
+  max-width: 180px !important;
+}
+
+/* --- CR9b. Modal detail panel: move action buttons to BOTTOM of the
+   metadata column, matching the Figma layout. The metadata column is
+   a flex-column, so order:20 + margin-top:auto pushes buttons down. --- */
+#bookDetailsModal .single .book-meta {
+  display: flex !important;
+  flex-direction: column !important;
+}
+#bookDetailsModal .book-meta > .btn-toolbar {
+  order: 20 !important;
+  margin-top: 20px !important;
+  padding-top: 14px !important;
+  border-top: 1px solid #2a2d35 !important;
+  flex-wrap: nowrap !important;
+}
+
+/* --- CR10. Tags section: inject "Genres" label prefix to match the
+   Figma's "Genres [chip] [chip]" layout. The glyphicon-tags icon is
+   already hidden by rule 3e, so ::before lands directly before the
+   chip buttons in the flex row. --- */
+.book-meta .tags p::before {
+  content: "Genres";
+  font-size: 10px;
+  font-weight: 700;
+  color: #555860;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-right: 4px;
+  flex-shrink: 0;
+  align-self: center;
+  padding-top: 1px;
+}
+
+/* --- CR11. Identifiers: hide the redundant link glyphicon — the chip
+   buttons themselves make the section purpose clear. --- */
+.book-meta .identifiers p > span.glyphicon-link {
+  display: none !important;
+}
+
+/* --- CR12. Bootstrap-table rows-per-page dropdown button: override the
+   filled-accent style from the global .btn-default rule. The control is
+   a `button.btn.btn-default.dropdown-toggle` inside .fixed-table-pagination. --- */
+.fixed-table-pagination .btn.dropdown-toggle,
+.fixed-table-pagination .page-list .btn {
+  background-color: #1a1d24 !important;
+  color: #9d9ea0 !important;
+  border: 1px solid #2a2d35 !important;
+  font-size: 12px !important;
+  padding: 3px 8px !important;
+  border-radius: 6px !important;
+}
+.fixed-table-pagination .btn.dropdown-toggle:hover,
+.fixed-table-pagination .page-list .btn:hover {
+  color: #e3e4e4 !important;
+  border-color: #90aaf9 !important;
+  background-color: rgba(144, 170, 249, 0.08) !important;
+}
+
+/* --- CR13. "Showing X to Y of Z rows" pagination detail text. --- */
+.fixed-table-pagination .pagination-detail,
+.pagination-info {
+  color: #6b6e76 !important;
+  font-size: 13px !important;
+}
+
+/* --- CR14. Book card title link: ensure hover doesn't change link
+   color to the generic blue — keep white/accent only. --- */
+.container-fluid .book .meta .title a {
+  color: white !important;
+  text-decoration: none !important;
+}
+.container-fluid .book:hover .meta .title a {
+  color: #90aaf9 !important;
+}
+
+/* --- CR15. List pages (author/category/series): slightly more
+   vertical padding per row for better readability. --- */
+.container1 .row {
+  padding: 9px 4px !important;
+}
+
+/* --- CR16. Navbar: ensure the brand "Calibre" after-text and icon
+   are perfectly vertically centred inside the 60px bar. --- */
+.navbar-brand {
+  line-height: 60px !important;
+  height: 60px !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+/* --- CR17. Detail page title (h2#title): slightly larger in the full
+   page view vs the already-constrained modal view. --- */
+.single:not(#bookDetailsModal .single) .book-meta #title {
+  font-size: 28px !important;
+  font-weight: 700 !important;
+  line-height: 1.2 !important;
+  margin-bottom: 10px !important;
+}
+
+/* --- CR18. Publisher / publishing date metadata: muted inline style
+   with separator dots for a cleaner Figma-style metadata line. --- */
+.book-meta .publishers p,
+.book-meta .publishing-date p {
+  margin: 0 0 4px 0 !important;
+  font-size: 13px !important;
+  color: #6b6e76 !important;
+}
+
+/* --- CR19. Series info line in detail view. --- */
+.book-meta > p {
+  font-size: 14px !important;
+  color: #9d9ea0 !important;
+  margin-bottom: 8px !important;
+}
+
+/* --- CR20. Mobile: undo content padding-top on small screens to
+   reclaim vertical space. --- */
+@media (max-width: 767px) {
+  .row-fluid > .col-sm-10 {
+    padding-top: 12px !important;
+  }
+}
+
+/* ===================================================================
+   FIGMA MATCH PASS 2 (FMP2) — Domine headings, colors, layout polish
+   =================================================================== */
+
+/* --- FMP2-0. Domine serif font — self-hosted (Domine-{Regular,SemiBold,Bold}.ttf)
+   Design token: --font-heading: "Domine", serif --- */
+@font-face {
+  font-family: "Domine";
+  src: url("../fonts/Domine-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Domine";
+  src: url("../fonts/Domine-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Domine";
+  src: url("../fonts/Domine-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* --- FMP2-1. Apply Domine to all page headings.
+   h1 = page-level titles (Authors, Categories, etc.)
+   h2 = section headings (My Library, Users, Configuration, etc.)
+   h3 = sub-section headings
+   Explicit !important overrides earlier Outfit assignments. --- */
+h1, h2, h3 {
+  font-family: "Domine", serif !important;
+}
+
+/* --- FMP2-2. "My Library" pseudo-element heading on the books home page.
+   The text is injected via ::before on the h2.Books element.
+   Both the FF2 and BC1 rules need the font applied. --- */
+.discover.load-more h2.Books::before,
+body.newest .discover.load-more h2.Books::before {
+  font-family: "Domine", serif !important;
+}
+
+/* --- FMP2-3. Book detail title — Domine gives the serif polish the Figma shows.
+   Applies to both the full detail page and the slide-in modal panel. --- */
+.book-meta h2#title {
+  font-family: "Domine", serif !important;
+}
+
+/* --- FMP2-4. Panel/accordion titles use Outfit (they are UI chrome, not
+   editorial headings) — override the h2/h3 catch-all above. --- */
+.panel-title,
+.panel-title a {
+  font-family: "Outfit", sans-serif !important;
+  font-size: 15px !important;
+}
+
+/* --- FMP2-5. Navbar brand "Calibre" text: keep Outfit (UI chrome). --- */
+.navbar-brand::after {
+  font-family: "Outfit", sans-serif !important;
+}
+
+/* --- FMP2-6. Grid card titles stay Outfit — Figma grid shows sans-serif. --- */
+.container-fluid .book .meta .title,
+.container-fluid .book .meta .title a {
+  font-family: "Outfit", sans-serif !important;
+}
+
+/* --- FMP2-7. Dropdown menus: use overlay color (#21242c) per design token.
+   The current #1a1d24 (surface) makes menus blend into the page. --- */
+.dropdown-menu {
+  background-color: #21242c !important;
+  border: 1px solid #2a2d35 !important;
+  border-radius: 8px !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45) !important;
+}
+.dropdown-menu > li > a {
+  color: #e3e4e4 !important;
+}
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
+  background-color: rgba(255, 255, 255, 0.07) !important;
+  color: white !important;
+}
+
+/* --- FMP2-8. Input focus states: accent ring for all text inputs.
+   Provides clear keyboard-navigation feedback matching the accent palette. --- */
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,
+input[type="search"]:focus,
+textarea:focus,
+select:focus {
+  border-color: #90aaf9 !important;
+  outline: none !important;
+  box-shadow: 0 0 0 3px rgba(144, 170, 249, 0.12) !important;
+}
+
+/* --- FMP2-9. Book detail (full page): proper flex layout for cover + meta.
+   Bootstrap's float-based grid doesn't give us the side-by-side layout
+   the Figma expects. We override with flex here. --- */
+body.book .single > .row {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  align-items: flex-start !important;
+  gap: 40px !important;
+}
+body.book .single > .row > .col-sm-3 {
+  float: none !important;
+  flex: 0 0 auto !important;
+  width: auto !important;
+  padding: 0 !important;
+}
+body.book .single > .row > .col-sm-9 {
+  float: none !important;
+  flex: 1 1 0 !important;
+  width: auto !important;
+  min-width: 0 !important;
+  padding: 0 !important;
+}
+
+/* --- FMP2-10. Full detail page cover: larger (260px) with stronger shadow.
+   Overrides the CR8 220px cap. The modal keeps its own 180px from CR9. --- */
+body.book #detailcover {
+  max-width: 260px !important;
+  width: 260px !important;
+  border-radius: 12px !important;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.65) !important;
+}
+
+/* --- FMP2-11. Book detail: author line gets a subtle divider below it.
+   Separates author from the chip row (language, rating, genres). --- */
+body.book .book-meta .author,
+#bookDetailsModal .book-meta .author {
+  margin-bottom: 14px !important;
+  padding-bottom: 12px !important;
+  border-bottom: 1px solid #1e2028 !important;
+}
+
+/* --- FMP2-12. Rating stars on detail page: larger, more vibrant.
+   Figma shows prominent 5-star row directly below the author. --- */
+.book-meta .rating .glyphicon-star.good {
+  color: #f6a623 !important;
+  font-size: 18px !important;
+}
+.book-meta .rating .glyphicon-star-empty {
+  color: #2e3140 !important;
+  font-size: 18px !important;
+}
+.book-meta .rating {
+  margin-bottom: 14px !important;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+/* --- FMP2-13. Description text: better line-height and slightly lighter color.
+   Figma shows description as the main reading block — needs breathing room. --- */
+.book-meta .comments {
+  line-height: 1.7 !important;
+  font-size: 14px !important;
+  color: #c8c9cc !important;
+}
+.book-meta .comments p {
+  margin-bottom: 12px !important;
+}
+
+/* --- FMP2-14. Filterheader: push view-toggle buttons to the far right.
+   #grid is the first of the grid/list/table toggle group. Giving it
+   margin-left:auto creates a flex spacer that separates sort buttons from
+   view toggles — exactly the visual separation the Figma design shows. --- */
+.filterheader {
+  align-items: center !important;
+}
+.filterheader #grid {
+  margin-left: auto !important;
+}
+
+/* --- FMP2-15. Admin page table headers: uppercase muted labels.
+   Matches the clean "header chip" style in the Figma admin/table views. --- */
+body.admin th,
+body.admin th .th-inner {
+  font-size: 11px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+  color: #6b6e76 !important;
+  font-weight: 500 !important;
+  font-family: "Outfit", sans-serif !important;
+}
+
+/* --- FMP2-16. Admin page: subtle row hover so the table reads as interactive. --- */
+body.admin tbody tr:hover td {
+  background-color: rgba(144, 170, 249, 0.04) !important;
+}
+
+/* --- FMP2-17. Sidebar "About" link: prepend settings icon to match
+   the Figma's "⚙ Calibre Settings" bottom link aesthetic. --- */
+#nav_about a::before {
+  content: "⚙ ";
+  opacity: 0.5;
+  font-size: 12px;
+}
+
+/* --- FMP2-18. Alert banners: more rounded to match the theme's radius system. --- */
+.alert {
+  border-radius: 10px !important;
+  font-size: 14px !important;
+  border-width: 1px !important;
+}
+
+/* --- FMP2-19. Well/form labels: muted secondary text for field labels. --- */
+.well .form-group > label,
+.well .form-group > .control-label {
+  font-size: 13px !important;
+  color: #9d9ea0 !important;
+  margin-bottom: 5px !important;
+  font-weight: 500 !important;
+}
+
+/* --- FMP2-20. Pagination typography: consistent Outfit and sizing. --- */
+.pagination > li > a,
+.pagination > li > span {
+  font-family: "Outfit", sans-serif !important;
+  font-size: 13px !important;
+}
+
+/* --- FMP2-21. HTTP error page heading: Domine + accent color
+   gives the 404/500 page a designed feel. --- */
+.http-error h1 {
+  font-size: 80px !important;
+  font-weight: 700 !important;
+  color: #90aaf9 !important;
+  margin-bottom: 0 !important;
+}
+.http-error h2 {
+  font-size: 22px !important;
+  color: #9d9ea0 !important;
+  font-weight: 400 !important;
+  margin-top: 8px !important;
+}
+
+/* --- FMP2-22. Book detail metadata rows: the template already emits
+   "Publisher: name" and "Published: date" as inline text. Style the
+   containing paragraphs so they read as muted secondary metadata.
+   No ::before needed — that would duplicate the label. --- */
+.book-meta .publishers p,
+.book-meta .publishing-date p {
+  font-size: 13px !important;
+  color: #6b6e76 !important;
+  margin: 0 0 4px 0 !important;
+  letter-spacing: 0.1px;
+}
+
+/* --- FMP2-23. Identifier section "Tags" label — identifiers already have
+   a chip-style. Ensure the section doesn't add extra top padding. --- */
+.book-meta .identifiers {
+  margin-top: 8px !important;
+  margin-bottom: 8px !important;
+}
+.book-meta .identifiers p {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 6px !important;
+  align-items: center !important;
+  margin: 0 !important;
+}
+
+/* --- FMP2-24. Login page: heading uses Domine for polish. --- */
+body.login h2 {
+  font-family: "Domine", serif !important;
+  font-size: 26px !important;
+  font-weight: 700 !important;
+}
+
+/* --- FMP2-25. Book card: subtle top padding for the title block so
+   cover border-radius isn't immediately followed by text. --- */
+.container-fluid .book .meta {
+  padding-top: 10px !important;
+}
+
+/* --- FMP2-26. List-page count badges: refine size and pill shape. --- */
+.container1 .badge {
+  min-width: 22px !important;
+  height: 22px !important;
+  line-height: 22px !important;
+  padding: 0 7px !important;
+  border-radius: 11px !important;
+  font-size: 10px !important;
+}
+
+/* --- FMP2-27. Series list entries: display series name with italic style
+   to distinguish from other list types. --- */
+body.serieslist .container1 a {
+  font-style: italic;
+}
+
+/* --- FMP2-28. Mobile adjustments for new flex layout on book detail. --- */
+@media (max-width: 767px) {
+  body.book .single > .row {
+    flex-wrap: wrap !important;
+    gap: 20px !important;
+  }
+  body.book .single > .row > .col-sm-3 {
+    flex: 0 0 100% !important;
+    width: 100% !important;
+    text-align: center;
+  }
+  body.book #detailcover {
+    max-width: 160px !important;
+    width: 160px !important;
+    margin: 0 auto !important;
+  }
+  body.book .single > .row > .col-sm-9 {
+    flex: 0 0 100% !important;
+    width: 100% !important;
+  }
+  /* Undo author divider on mobile (spacing is tight) */
+  body.book .book-meta .author {
+    border-bottom: none !important;
+    padding-bottom: 4px !important;
+  }
+}
+
+/* ===================================================================
+   FIGMA MATCH PASS 3 (FMP3) — chip colors, login, micro-polish
+   =================================================================== */
+
+/* --- FMP3-1. Genre/category chips: match Figma --tag-green token.
+   Figma: background #1a3a2a / text #68d391 (bright green on dark green).
+   Replaces the earlier teal which was close but slightly off-hue. --- */
+.book-meta .tags .btn-xs.btn-info {
+  background-color: #1a3a2a !important;
+  color: #68d391 !important;
+  border: 1px solid rgba(104, 211, 145, 0.3) !important;
+}
+.book-meta .tags .btn-xs.btn-info:hover {
+  background-color: #1f4a34 !important;
+  border-color: #68d391 !important;
+  color: #8fe8a8 !important;
+}
+
+/* --- FMP3-2. Identifier chips: match Figma --tag-blue token.
+   Figma: background #1e3a5f / text #90aaf9 (indigo on dark navy).
+   Distinguishes identifiers (ISBN, Goodreads, etc.) from genres. --- */
+.book-meta .identifiers .btn-xs.btn-success {
+  background-color: #1e3a5f !important;
+  color: #90aaf9 !important;
+  border: 1px solid rgba(144, 170, 249, 0.3) !important;
+}
+.book-meta .identifiers .btn-xs.btn-success:hover {
+  background-color: #243f6a !important;
+  border-color: #90aaf9 !important;
+  color: #aabcfb !important;
+}
+
+/* --- FMP3-3. Language chip: slightly more saturated to better distinguish
+   from identifier chips which now also use indigo. Use purple tint. --- */
+.book-meta .languages .label-default {
+  background-color: #2d1f4a !important;
+  color: #b794f4 !important;
+  border: 1px solid rgba(183, 148, 244, 0.3) !important;
+}
+
+/* --- FMP3-4. Login page: full-width submit button.
+   In the centered login card, a full-width button reads better and
+   matches the Figma's clean single-action emphasis. --- */
+body.login .btn[type="submit"],
+body.login button[type="submit"],
+body.login form .btn-primary {
+  width: 100% !important;
+  padding: 12px 20px !important;
+  font-size: 16px !important;
+  background-color: #90aaf9 !important;
+  color: #0c0e14 !important;
+  border: none !important;
+  border-radius: 10px !important;
+  margin-top: 8px !important;
+}
+
+/* --- FMP3-5. Login card: tighten heading top margin and add
+   subtitle-like spacing below the "Login" h2. --- */
+body.login .well h2 {
+  margin-top: 0 !important;
+  margin-bottom: 28px !important;
+  text-align: center !important;
+}
+
+/* --- FMP3-6. Sort bar (filterheader): the active sort button has a
+   stronger accent ring — increase the border opacity slightly. --- */
+.filterheader .btn.active,
+.filterheader .btn-primary.active {
+  background: rgba(144, 170, 249, 0.15) !important;
+  border-color: rgba(144, 170, 249, 0.55) !important;
+  color: #90aaf9 !important;
+}
+
+/* --- FMP3-7. Book detail: ensure the .author div flex is corrected
+   so the author name and the border are aligned properly. --- */
+.book-meta .author {
+  display: block !important;
+}
+.book-meta .author a {
+  color: #c8c9cc !important;
+  font-size: 20px !important;
+}
+
+/* --- FMP3-8. Book detail author line: reduce the font size in the modal
+   where space is tighter (560px panel). --- */
+#bookDetailsModal .book-meta .author a {
+  font-size: 16px !important;
+  color: #9d9ea0 !important;
+}
+
+/* --- FMP3-9. Sidebar: smooth hover transition on all nav links. --- */
+.navigation li a {
+  transition: background-color 0.15s ease, color 0.15s ease !important;
+}
+
+/* --- FMP3-10. Book grid: when no cover is available the generic_cover.jpg
+   shows a dark card image. Ensure the placeholder renders at full card
+   height matching real covers. --- */
+.container-fluid .book .cover img {
+  min-height: 100% !important;
+}
+
+/* --- FMP3-11. Book table rows: consistent min-height so short rows
+   don't look collapsed next to tall wrapping rows. --- */
+body.book_table td {
+  vertical-align: middle !important;
+}
+
+/* --- FMP3-12. Sidebar "Shelves" section header: visually match
+   "BROWSE" style — both should look like section category labels. --- */
+.navigation li.nav-head {
+  font-size: 10px !important;
+  letter-spacing: 2.5px !important;
+  text-transform: uppercase !important;
+  color: #4a4d57 !important;
+  font-family: "Outfit", sans-serif !important;
+}
+
+/* --- FMP3-13. H1 on list pages: bump letter-spacing slightly for the
+   Domine serif treatment to breathe a bit more. --- */
+body.authorlist h1,
+body.categorylist h1,
+body.serieslist h1,
+body.publisherlist h1,
+body.langlist h1,
+body.ratingslist h1,
+body.formatslist h1 {
+  letter-spacing: -0.5px !important;
+}
+
+/* --- FMP3-14. Admin page h2 section headings: add slight letter-spacing
+   to help the Domine weight read as a section divider. --- */
+body.admin h2,
+body.config h2,
+body.uiconfig h2,
+body.dbconfig h2 {
+  letter-spacing: -0.3px !important;
+}
+
+/* --- FMP3-15. Navbar search input: slightly taller input to visually
+   balance better with the search-submit button beside it. --- */
+.navbar-form .form-control#query {
+  height: 38px !important;
+  padding: 8px 14px !important;
+}
+
+/* --- FMP3-16. Mobile: undo login button full-width styles on very small
+   screens where the card collapses to edge-to-edge. --- */
+@media (max-width: 479px) {
+  body.login .btn[type="submit"],
+  body.login button[type="submit"],
+  body.login form .btn-primary {
+    font-size: 15px !important;
+  }
+}
+
+/* ============================================================
+   ADVANCED SEARCH FIX PASS (ASF1–ASF4)
+   The bare `button` selector at line ~344 gives ALL <button>
+   elements the accent fill (#90aaf9). .btn-primary has a class
+   selector override (higher specificity) so it stays dark, but
+   .btn-danger and .actions-btn are caught by the bare `button`
+   rule and turn solid accent. Fix them here.
+   ============================================================ */
+
+/* --- ASF1. btn-danger (selectpicker "Exclude" dropdowns): match the
+   same dark surface style as .btn-primary selectpicker triggers. --- */
+.btn-danger,
+.btn-danger.bs-placeholder {
+  background-color: #1f2127 !important;
+  color: #9d9ea0 !important;
+  border: 1px solid #2a2d35 !important;
+}
+
+.btn-danger:hover,
+.btn-danger:focus {
+  background-color: #272a33 !important;
+  color: #e8e9ec !important;
+  border-color: #3a3d48 !important;
+}
+
+/* --- ASF2. datepicker_delete (⊗ clear button on date fields): small
+   dark icon button, not filled accent. --- */
+.datepicker_delete {
+  background-color: #1a1d24 !important;
+  color: #6b6e76 !important;
+  border: 1px solid #2a2d35 !important;
+  border-left: none !important;
+}
+
+.datepicker_delete:hover {
+  background-color: #232630 !important;
+  color: #e8e9ec !important;
+}
+
+/* --- ASF3. Select All / Deselect All action buttons inside the open
+   selectpicker dropdown panel — muted small buttons, not accent fill. --- */
+.actions-btn.btn {
+  background-color: #1a1d24 !important;
+  color: #9d9ea0 !important;
+  border: 1px solid #2a2d35 !important;
+  font-size: 12px !important;
+}
+
+.actions-btn.btn:hover {
+  background-color: #232630 !important;
+  color: #e8e9ec !important;
+}
+
+/* --- ASF4. Bootstrap selectpicker dropdown open panel: ensure the
+   dropdown menu container uses dark overlay color. --- */
+.bootstrap-select .dropdown-menu {
+  background-color: #21242c !important;
+  border: 1px solid #2a2d35 !important;
+}
+
+.bootstrap-select .dropdown-menu li a {
+  color: #e8e9ec !important;
+}
+
+.bootstrap-select .dropdown-menu li a:hover,
+.bootstrap-select .dropdown-menu li.selected a {
+  background-color: rgba(144, 170, 249, 0.1) !important;
+  color: #90aaf9 !important;
+}
+
+/* --- ADMIN PASS 1 (AP1). Primary Save/Submit button accent fill.
+   Admin forms use mixed element types (button[type=submit], button[type=button],
+   div) for their primary action, all with btn-default. Target each by ID so
+   only the Save action gets accent; Cancel/Back (anchors with no ID) stay dark.
+   Also cover button[type="submit"].btn-default via attribute+class selector
+   (specificity 0,1,1,0 beats .btn-default at 0,1,0,0). Exclude disabled and
+   .btn-danger to avoid catching folder-picker and revoke buttons. --- */
+button[type="submit"].btn-default:not([disabled]):not(.btn-danger),
+#config_submit.btn-default,
+#user_submit.btn-default,
+#db_submit.btn-default {
+  background-color: #90aaf9 !important;
+  color: #0c0e14 !important;
+  border: none !important;
+}
+
+button[type="submit"].btn-default:not([disabled]):not(.btn-danger):hover,
+#config_submit.btn-default:hover,
+#user_submit.btn-default:hover,
+#db_submit.btn-default:hover {
+  background-color: #7c9cf5 !important;
+  color: #0c0e14 !important;
+}
+
+/* --- ADMIN PASS 2 (AP2). Bootstrap-table pagination prev/next buttons.
+   The .pagination > li > a rule at line ~449 has no !important and loses to
+   bootstrap-table's own CSS. Scope with .fixed-table-pagination and force
+   dark theme colors. --- */
+.fixed-table-pagination .pagination > li > a,
+.fixed-table-pagination .pagination > li > span {
+  background-color: #1a1d24 !important;
+  color: #90aaf9 !important;
+  border-color: #2a2d35 !important;
+}
+.fixed-table-pagination .pagination > li > a:hover,
+.fixed-table-pagination .pagination > li > span:hover {
+  background-color: rgba(144, 170, 249, 0.08) !important;
+  color: #e8e9ec !important;
+  border-color: #90aaf9 !important;
+}
+.fixed-table-pagination .pagination > .active > a,
+.fixed-table-pagination .pagination > .active > a:hover,
+.fixed-table-pagination .pagination > .active > span {
+  background-color: #90aaf9 !important;
+  color: #111318 !important;
+  border-color: #90aaf9 !important;
+}
+.fixed-table-pagination .pagination > .disabled > a,
+.fixed-table-pagination .pagination > .disabled > span {
+  background-color: #111318 !important;
+  color: #6b6e76 !important;
+  border-color: #2a2d35 !important;
+  cursor: default !important;
+}
+
+/* ===================================================================
+   FIGMA REFINEMENT PASS (FRP-1 – FRP-20)
+   Comprehensive improvements from full Figma mockup comparison.
+   =================================================================== */
+
+/* --- FRP-1. Sidebar section header text injection.
+   Template hardcodes "Browse" and "Shelves". Figma shows "MY LIBRARY"
+   and "MY SHELVES". Zero font-size hides hardcoded text; ::before injects
+   the Figma label. flex-grow:1 on ::before lets it take all available
+   width so the ::after chevron (FF5, explicit font-size:14px) stays
+   right-aligned unaffected. letter-spacing:0 on the parent prevents the
+   invisible text node from contributing any width.
+   .public-shelves class uniquely identifies the "Shelves" header. --- */
+
+.navigation .nav-head:not(.public-shelves) {
+  font-size: 0 !important;
+  letter-spacing: 0 !important;
+}
+.navigation .nav-head:not(.public-shelves)::before {
+  content: "MY LIBRARY";
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: 2.5px !important;
+  color: #555860 !important;
+  font-family: "Outfit", sans-serif !important;
+  flex-grow: 1 !important;
+}
+
+.navigation .nav-head.public-shelves {
+  font-size: 0 !important;
+  letter-spacing: 0 !important;
+}
+.navigation .nav-head.public-shelves::before {
+  content: "MY SHELVES";
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: 2.5px !important;
+  color: #555860 !important;
+  font-family: "Outfit", sans-serif !important;
+  flex-grow: 1 !important;
+}
+
+/* --- FRP-2. Navbar bottom border: 1px separator cleanly divides the
+   fixed navbar from scrollable content. The transparent navbar otherwise
+   creates an undefined visual edge where the sidebar meets the body. --- */
+.navbar-default {
+  border-bottom: 1px solid #2a2d35 !important;
+}
+
+/* --- FRP-3. Book detail full page: reorder metadata elements to match
+   the Figma layout.
+   Figma order: title → author → rating → language → genres →
+                description → identifiers → publisher/date → user prefs → actions
+   Currently identifiers/publishers/date are at flex order 0 and render
+   BEFORE the description block (order 5). Moving them to 6–8 puts them
+   after the description. custom_columns (Read/Archive) go last before btns. --- */
+
+body.book .book-meta .identifiers {
+  order: 6 !important;
+}
+body.book .book-meta .publishers {
+  order: 7 !important;
+}
+body.book .book-meta .publishing-date {
+  order: 7 !important;
+}
+body.book .book-meta .real_custom_columns {
+  order: 8 !important;
+}
+body.book .book-meta .custom_columns {
+  order: 8 !important;
+}
+/* .more-stuff holds admin controls (Edit Metadata, shelf actions).
+   Set to order:19 so it appears just before the download btn-toolbar (order:20). --- */
+body.book .book-meta .more-stuff {
+  order: 19 !important;
+}
+
+/* --- FRP-4. Book detail modal: apply same element ordering.
+   .comments was not reordered for the modal in prior passes;
+   add it here at order 5, then move identifiers/publisher/date after it. --- */
+
+#bookDetailsModal .book-meta > .comments {
+  order: 5 !important;
+}
+#bookDetailsModal .book-meta .identifiers {
+  order: 6 !important;
+}
+#bookDetailsModal .book-meta .publishers {
+  order: 7 !important;
+}
+#bookDetailsModal .book-meta .publishing-date {
+  order: 7 !important;
+}
+#bookDetailsModal .book-meta .real_custom_columns {
+  order: 8 !important;
+}
+#bookDetailsModal .book-meta .custom_columns {
+  order: 8 !important;
+}
+#bookDetailsModal .book-meta .more-stuff {
+  order: 19 !important;
+}
+
+/* --- FRP-5. Description visual separator: top border above the description
+   block creates a clean visual break between the chip area and the prose.
+   Overrides the prior border-top set in FMP2-13 area and adds padding. --- */
+body.book .book-meta > .comments {
+  border-top: 1px solid #222530 !important;
+  padding-top: 16px !important;
+  margin-top: 8px !important;
+}
+#bookDetailsModal .book-meta > .comments {
+  border-top: 1px solid #222530 !important;
+  padding-top: 12px !important;
+  margin-top: 6px !important;
+}
+
+/* --- FRP-6. Publisher / date metadata: top border separates this block
+   from the description above it (post-reorder). Only shown when publishers
+   section exists; the sibling selector covers the date when publishers is absent. --- */
+body.book .book-meta .publishers {
+  padding-top: 14px !important;
+  border-top: 1px solid #222530 !important;
+  margin-top: 8px !important;
+}
+/* When publishers div is absent, publishing-date gets the separator */
+body.book .book-meta .identifiers + .publishing-date,
+body.book .book-meta .comments + .publishing-date {
+  padding-top: 14px !important;
+  border-top: 1px solid #222530 !important;
+}
+#bookDetailsModal .book-meta .publishers {
+  padding-top: 10px !important;
+  border-top: 1px solid #222530 !important;
+  margin-top: 6px !important;
+}
+
+/* --- FRP-7. Filterheader active sort button: slightly bolder accent ring
+   so the currently-active sort direction is clearly visible at a glance.
+   Overrides the softer FMP3-6 values here. --- */
+.filterheader .btn.active,
+.filterheader .btn-primary.active {
+  background: rgba(144, 170, 249, 0.18) !important;
+  border-color: rgba(144, 170, 249, 0.65) !important;
+  color: #90aaf9 !important;
+  font-weight: 600 !important;
+}
+
+/* --- FRP-8. Book detail cover container: overflow:hidden on the .cover
+   wrapper ensures border-radius clips the image at the corners even when
+   the image has internal white-space / letterboxing from the source file. --- */
+body.book .cover {
+  overflow: hidden !important;
+  border-radius: 12px !important;
+  background: #1a1d24 !important;
+}
+
+/* --- FRP-9. Tags/genre chips spacing: small breathing room between
+   the chip row and the rating/language elements above/below. --- */
+.book-meta .tags {
+  margin-top: 2px !important;
+  margin-bottom: 2px !important;
+}
+.book-meta .tags p {
+  margin-top: 4px !important;
+  margin-bottom: 4px !important;
+}
+
+/* --- FRP-10. Language chip: compact spacing so it reads as part of
+   the tight chip cluster (language + genres) rather than a loose block. --- */
+.book-meta .languages {
+  margin-bottom: 2px !important;
+}
+.book-meta .languages p {
+  margin-top: 4px !important;
+  margin-bottom: 4px !important;
+}
+
+/* --- FRP-11. Identifier chips section: consistent chip-row spacing
+   matching genres and language. --- */
+.book-meta .identifiers {
+  margin-top: 4px !important;
+  margin-bottom: 4px !important;
+}
+
+/* --- FRP-12. Admin table glyphicon-ok / glyphicon-remove coloring.
+   Scoped to <td> elements to avoid catching delete/clear action buttons
+   which use different glyphicon names (glyphicon-trash, glyphicon-remove-circle).
+   green ✓ / muted-red ✗ match the Figma's status table conventions. --- */
+body.admin td .glyphicon-ok,
+body.usertable td .glyphicon-ok,
+body.config td .glyphicon-ok {
+  color: #68d391 !important;
+}
+body.admin td .glyphicon-remove,
+body.usertable td .glyphicon-remove,
+body.config td .glyphicon-remove {
+  color: #fc8181 !important;
+}
+
+/* Also color boolean custom-column values in book detail view */
+.book-meta .real_custom_columns .glyphicon-ok {
+  color: #68d391 !important;
+}
+.book-meta .real_custom_columns .glyphicon-remove {
+  color: #fc8181 !important;
+}
+
+/* --- FRP-13. Read badge (book cover ✓ overlay): keep it white on the
+   dark accent badge — already styled via .cover .badge in prior rules.
+   Explicitly re-assert so the FRP-12 rule above doesn't catch it. --- */
+.cover .badge.read.glyphicon-ok {
+  color: #111318 !important;
+}
+
+/* --- FRP-14. Sidebar nav items: reduce gap between MY LIBRARY label
+   and the first nav link below it. Figma shows tighter section spacing. --- */
+.navigation .nav-head {
+  margin-top: 18px !important;
+  margin-bottom: 4px !important;
+  padding-bottom: 4px !important;
+}
+
+/* --- FRP-15. Sidebar active item: ensure the accent left-bar + background
+   combination is consistent. Normalise padding so the bar doesn't shift text. --- */
+.navigation li.active > a {
+  padding-left: 10px !important;
+  border-left: 3px solid #90aaf9 !important;
+  background: rgba(144, 170, 249, 0.08) !important;
+  border-radius: 0 6px 6px 0 !important;
+  color: #90aaf9 !important;
+}
+
+/* --- FRP-16. Search bar in navbar: match the compact 60px navbar height.
+   Ensures the input + button group is vertically centred without overflow. --- */
+.navbar-form .input-group {
+  display: flex !important;
+  align-items: center !important;
+}
+
+/* --- FRP-17. Book grid: consistent vertical rhythm between rows.
+   Slightly more vertical breathing room between cover card rows. --- */
+.container-fluid .book {
+  margin-bottom: 4px !important;
+}
+
+/* --- FRP-18. Breadcrumb-style "Showing X–Y of Z" count line below
+   the filterheader: muted, small, consistent with Figma's info text. --- */
+.discover .row-fluid > p,
+.discover .container-fluid > p {
+  font-size: 12px !important;
+  color: #6b6e76 !important;
+  margin-bottom: 12px !important;
+}
+
+/* --- FRP-19. Mobile: FRP-1 nav-head injection is hidden on xs screens
+   via Bootstrap's .hidden-xs on the element — no extra override needed.
+   For the mobile expanded navbar sidebar, restore padding for nav-head
+   that is displayed inline. --- */
+@media (max-width: 767px) {
+  .navigation .nav-head:not(.public-shelves)::before,
+  .navigation .nav-head.public-shelves::before {
+    flex-grow: 0 !important;
+  }
+}
+
+/* --- FRP-20. Detail page: ensure custom_columns (Read/Archive forms)
+   have a clean divider above them when they follow the publisher/date block. --- */
+body.book .book-meta .custom_columns {
+  padding-top: 12px !important;
+  border-top: 1px solid #222530 !important;
+  margin-top: 8px !important;
+}
+#bookDetailsModal .book-meta .custom_columns {
+  padding-top: 10px !important;
+  border-top: 1px solid #222530 !important;
+  margin-top: 6px !important;
+}
+
+/* ===================================================================
+   MOBILE NAV POLISH PASS (MNP-1 – MNP-5)
+   All rules here come after FF13 (line ~2479) in cascade order, so
+   mobile overrides win without needing to touch earlier blocks.
+   =================================================================== */
+
+/* --- MNP-3. Hamburger interaction states + X animation.
+   No media query — hover/focus apply on desktop too.
+   Open-state detection via aria-expanded="true", which Bootstrap sets
+   automatically when the collapse panel is shown. --- */
+
+.navbar-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.06) !important;
+  border-color: #6b6e76 !important;
+}
+.navbar-toggle:active {
+  background-color: rgba(255, 255, 255, 0.10) !important;
+}
+.navbar-toggle:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(144, 170, 249, 0.35);
+}
+.navbar-toggle[aria-expanded="true"] {
+  background-color: rgba(144, 170, 249, 0.12) !important;
+  border-color: #90aaf9 !important;
+}
+
+/* X animation: sr-only is :nth-child(1); icon-bars are :nth-child(2/3/4).
+   Stack height = 14px (3×2px bars + 2×4px gaps), centre at 7px.
+   Bar1 centre at y=1px → translateY(+6px); Bar3 centre at y=13px → translateY(-6px). */
+.navbar-toggle[aria-expanded="true"] .icon-bar:nth-child(2) {
+  transform: translateY(6px) rotate(45deg);
+  background-color: #90aaf9 !important;
+}
+.navbar-toggle[aria-expanded="true"] .icon-bar:nth-child(3) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.navbar-toggle[aria-expanded="true"] .icon-bar:nth-child(4) {
+  transform: translateY(-6px) rotate(-45deg);
+  background-color: #90aaf9 !important;
+}
+
+/* --- MNP-1, MNP-4, MNP-5. Mobile-only fixes. --- */
+@media (max-width: 767px) {
+
+  /* MNP-1. Text labels in the expanded collapse menu.
+     FF13 hides .hidden-sm inside #main-nav at all viewports for the desktop
+     icon-only navbar. When the collapse is open on mobile, those items appear
+     in a full-height list where icon-only is confusing — restore the labels. */
+  .navbar-collapse.in #main-nav > li > a .hidden-sm {
+    display: inline !important;
+  }
+  .navbar-collapse.in #main-nav > li > a .glyphicon {
+    margin-right: 6px !important;
+    opacity: 1 !important;
+  }
+  .navbar-collapse.in #main-nav > li > a {
+    padding: 10px 12px !important;
+  }
+
+  /* MNP-4. Touch target: iOS/Android recommend min 44×44px tap targets.
+     Bootstrap's default button is ~40px. Border-radius matches theme style. */
+  .navbar-toggle {
+    min-height: 44px !important;
+    min-width:  44px !important;
+    border-radius: 8px !important;
+    padding: 11px 10px !important;
+  }
+
+  /* MNP-5. Search button height: align with the 38px input height so the
+     flex row doesn't have an uneven vertical profile. */
+  #query_submit {
+    height: 38px !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+}

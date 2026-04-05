@@ -104,7 +104,7 @@ def add_security_headers(resp):
     if request.endpoint == "edit-book.show_edit_book" or config.config_use_google_drive:
         csp += " *"
     if request.endpoint == "web.read_book":
-        csp += " blob: ; style-src-elem 'self' blob: 'unsafe-inline'"
+        csp += " blob: ; style-src-elem 'self' blob: 'unsafe-inline'; frame-src 'self' blob:"
     csp += "; object-src 'none';"
     resp.headers['Content-Security-Policy'] = csp
     resp.headers['X-Content-Type-Options'] = 'nosniff'
@@ -1575,7 +1575,11 @@ def read_book(book_id, book_format):
                                                              ub.Bookmark.book_id == book_id,
                                                              ub.Bookmark.format == book_format.upper())).first()
     if book_format.lower() == "epub" or book_format.lower() == "kepub":
-        log.debug("Start [k]epub reader for %d", book_id)
+        reader_type = request.args.get('reader', config.config_epub_reader or 'epubjs')
+        log.debug("Start [k]epub reader for %d (reader=%s)", book_id, reader_type)
+        if reader_type == 'foliate':
+            return render_title_template('readfoliate.html', bookid=book_id, title=book.title,
+                                         bookmark=bookmark, book_format=book_format)
         return render_title_template('read.html', bookid=book_id, title=book.title, bookmark=bookmark,
                                      book_format=book_format)
     elif book_format.lower() == "pdf":

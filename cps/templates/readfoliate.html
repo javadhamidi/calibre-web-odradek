@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html class="no-js">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>{{_('epub Reader')}} (Foliate) | {{title}}</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    {% if g.google_site_verification|length > 0 %}
+    <meta name="google-site-verification" content="{{g.google_site_verification}}">
+    {% endif %}
+    <link rel="apple-touch-icon" sizes="140x140" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/libs/normalize.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/reader_foliate.css') }}">
+</head>
+
+<body>
+    <!-- Sidebar backdrop -->
+    <div id="sidebar-backdrop"></div>
+
+    <!-- TOC / Bookmarks sidebar -->
+    <div id="sidebar">
+        <div id="panels">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <a id="show-Toc" class="show_view active" data-view="Toc">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="2" y1="4" x2="14" y2="4"/><line x1="2" y1="8" x2="10" y2="8"/><line x1="2" y1="12" x2="12" y2="12"/></svg>
+                {{_('Contents')}}
+            </a>
+            <a id="show-Bookmarks" class="show_view" data-view="Bookmarks">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M3 2h10v13l-5-3.5L3 15V2z"/></svg>
+                {{_('Bookmarks')}}
+            </a>
+            <a id="sidebar-close" title="Close">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="4" y1="4" x2="12" y2="12"/><line x1="12" y1="4" x2="4" y2="12"/></svg>
+            </a>
+        </div>
+        <div id="tocView" class="view">
+        </div>
+        <div id="bookmarksView" class="view">
+            <ul id="bookmarks"></ul>
+        </div>
+    </div>
+
+    <!-- Main reader area -->
+    <div id="main">
+        <!-- Top toolbar -->
+        <div id="titlebar">
+            <div id="toolbar-left">
+                <a id="slider" title="Table of Contents">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="3" y1="5" x2="17" y2="5"/><line x1="3" y1="10" x2="17" y2="10"/><line x1="3" y1="15" x2="17" y2="15"/></svg>
+                </a>
+                <a id="back-button" href="{{ url_for('web.index') }}" title="Back to Library">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="10,3 3,10 10,17"/><line x1="3" y1="10" x2="17" y2="10"/></svg>
+                </a>
+            </div>
+            <div id="metainfo">
+                <span id="book-title"></span>
+                <span id="title-seperator"> &mdash; </span>
+                <span id="chapter-title"></span>
+            </div>
+            <div id="title-controls">
+                <a id="bookmark" class="control-btn" title="Bookmark">
+                    <svg id="bookmark-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M4 2h12v16l-6-4-6 4V2z"/></svg>
+                </a>
+                <a id="setting" class="control-btn" title="Settings">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10" cy="10" r="3"/><path d="M10 1.5v2M10 16.5v2M18.5 10h-2M3.5 10h-2M15.6 4.4l-1.4 1.4M5.8 14.2l-1.4 1.4M15.6 15.6l-1.4-1.4M5.8 5.8L4.4 4.4"/></svg>
+                </a>
+                <a id="fullscreen" class="control-btn" title="Fullscreen">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6,2 2,2 2,6"/><polyline points="14,2 18,2 18,6"/><polyline points="6,18 2,18 2,14"/><polyline points="14,18 18,18 18,14"/></svg>
+                </a>
+            </div>
+        </div>
+
+        <!-- Settings dropdown panel -->
+        <div id="settings-dropdown">
+            <div class="settings-section">
+                <div class="settings-label">{{_('Theme')}}</div>
+                <div class="theme-swatches" id="theme-swatches">
+                    <button type="button" class="theme-swatch light active" data-theme="lightTheme" title="Light"></button>
+                    <button type="button" class="theme-swatch sepia" data-theme="sepiaTheme" title="Sepia"></button>
+                    <button type="button" class="theme-swatch dark" data-theme="darkTheme" title="Dark"></button>
+                    <button type="button" class="theme-swatch black" data-theme="blackTheme" title="Black"></button>
+                </div>
+            </div>
+            <div class="settings-section">
+                <div class="settings-label">{{_('Font Size')}}</div>
+                <div class="font-size-row">
+                    <button type="button" id="fontSizeDecrease" class="font-size-btn" title="Decrease">&minus;</button>
+                    <span id="fontSizeDisplay" class="font-size-value">100%</span>
+                    <button type="button" id="fontSizeIncrease" class="font-size-btn" title="Increase">+</button>
+                </div>
+            </div>
+            <div class="settings-section">
+                <div class="settings-label">{{_('Font')}}</div>
+                <div class="font-options" id="font-options">
+                    <button type="button" class="font-option active" data-font="default">{{_('Default')}}</button>
+                    <button type="button" class="font-option" data-font="serif" style="font-family:Georgia,serif">Serif</button>
+                    <button type="button" class="font-option" data-font="sans-serif" style="font-family:-apple-system,sans-serif">Sans</button>
+                </div>
+            </div>
+            <div class="settings-section">
+                <div class="settings-label">{{_('Layout')}}</div>
+                <div class="layout-options" id="layout-options">
+                    <button type="button" class="layout-option active" data-layout="paginated">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="1" y="2" width="6" height="12" rx="1"/><rect x="9" y="2" width="6" height="12" rx="1"/></svg>
+                        {{_('Pages')}}
+                    </button>
+                    <button type="button" class="layout-option" data-layout="scrolled">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="1" width="10" height="14" rx="1"/><line x1="5" y1="4" x2="11" y2="4"/><line x1="5" y1="7" x2="11" y2="7"/><line x1="5" y1="10" x2="9" y2="10"/></svg>
+                        {{_('Scroll')}}
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation arrows -->
+        <div id="prev" class="arrow">
+            <svg width="24" height="48" viewBox="0 0 24 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18,6 6,24 18,42"/></svg>
+        </div>
+
+        <!-- Book content -->
+        <div id="foliate-container"></div>
+
+        <!-- Navigation arrow right -->
+        <div id="next" class="arrow">
+            <svg width="24" height="48" viewBox="0 0 24 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6,6 18,24 6,42"/></svg>
+        </div>
+
+        <!-- Bottom progress bar -->
+        <div id="reader-footer">
+            <span id="chapter-display"></span>
+            <input type="range" id="progress-slider" min="0" max="1000" value="0" step="1">
+            <span id="progress">0%</span>
+        </div>
+
+        <!-- Loader -->
+        <div id="loader">
+            <div class="loader-spinner"></div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/libs/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/libs/screenfull.min.js') }}"></script>
+    <script type="text/javascript">
+        window.calibre = {
+            bookmarkUrl: "{{ url_for('web.set_bookmark', book_id=bookid, book_format=book_format) }}",
+            bookUrl: "{{ url_for('web.serve_book', book_id=bookid, book_format=book_format, anyname='file.epub') }}",
+            bookmark: "{{ bookmark.bookmark_key if bookmark != None }}",
+            useBookmarks: {{ current_user.is_authenticated | tojson }},
+            foliateBase: "{{ url_for('static', filename='js/foliate/') }}"
+        };
+
+        window.themes = {
+            "lightTheme": {
+                "bgColor": "#ffffff",
+                "fgColor": "#1a1a1a",
+                "linkColor": "#4f7df9",
+                "titleColor": "#333333",
+                "uiBg": "#ffffff",
+                "uiBorder": "#e8e8e8",
+                "uiText": "#333333",
+                "uiMuted": "#888888"
+            },
+            "darkTheme": {
+                "bgColor": "#1a1d24",
+                "fgColor": "#d4d4d8",
+                "linkColor": "#8ab4f8",
+                "titleColor": "#e0e0e0",
+                "uiBg": "#1a1d24",
+                "uiBorder": "#2a2d35",
+                "uiText": "#e0e0e0",
+                "uiMuted": "#8a8a8e"
+            },
+            "sepiaTheme": {
+                "bgColor": "#f5edda",
+                "fgColor": "#5b4636",
+                "linkColor": "#7a4e2e",
+                "titleColor": "#5b4636",
+                "uiBg": "#f5edda",
+                "uiBorder": "#d9cdb7",
+                "uiText": "#5b4636",
+                "uiMuted": "#8a7560"
+            },
+            "blackTheme": {
+                "bgColor": "#000000",
+                "fgColor": "#b0b0b0",
+                "linkColor": "#8ab4f8",
+                "titleColor": "#cccccc",
+                "uiBg": "#000000",
+                "uiBorder": "#222222",
+                "uiText": "#cccccc",
+                "uiMuted": "#666666"
+            }
+        };
+    </script>
+    <script type="module" src="{{ url_for('static', filename='js/reading/foliate.js') }}"></script>
+</body>
+</html>
