@@ -66,7 +66,8 @@ feature_support = {
     'updater': constants.UPDATER_AVAILABLE,
     'gmail': bool(services.gmail),
     'scheduler': schedule.use_APScheduler,
-    'gdrive': gdrive_support
+    'gdrive': gdrive_support,
+    'ai_librarian': bool(services.ai_librarian),
 }
 
 try:
@@ -119,6 +120,7 @@ def before_request():
     g.allow_upload = config.config_uploading
     g.current_theme = config.config_theme
     g.config_authors_max = config.config_authors_max
+    g.ai_librarian_enabled = bool(config.config_ai_librarian_enabled)
     if ('/static/' not in request.path and not config.db_configured and
         request.endpoint not in ('admin.ajax_db_config',
                                  'admin.simulatedbchange',
@@ -1882,6 +1884,14 @@ def _configuration_update_helper():
             unrar_status = helper.check_unrar(config.config_rarfile_location)
             if unrar_status:
                 return _configuration_result(unrar_status)
+
+        # AI Librarian configuration
+        reboot_required |= _config_checkbox(to_save, "config_ai_librarian_enabled")
+        _config_string(to_save, "config_ai_ollama_url")
+        _config_string(to_save, "config_ai_chat_model")
+        _config_string(to_save, "config_ai_embed_model")
+        _config_int(to_save, "config_ai_top_k")
+        _config_int(to_save, "config_ai_num_ctx")
     except (OperationalError, InvalidRequestError) as e:
         ub.session.rollback()
         log.error_or_exception("Settings Database error: {}".format(e))

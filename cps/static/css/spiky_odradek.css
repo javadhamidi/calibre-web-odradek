@@ -3906,3 +3906,81 @@ body.book .book-meta .custom_columns {
     padding-bottom: 0 !important;
   }
 }
+
+/* ============================================================
+   AI LIBRARIAN — dark theme overrides
+   Floating bottom-right chat panel + FAB, styled with spiky_odradek tokens.
+   ============================================================ */
+.ai-fab {
+  background: #90aaf9 !important;
+  color: #111318 !important;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45) !important;
+  font-family: "Outfit", sans-serif !important;
+}
+.ai-fab:hover {
+  background: #7c9cf5 !important;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.55) !important;
+}
+.ai-panel {
+  background: #1a1d24;
+  color: #e8e9ec;
+  border: 1px solid #2a2d35;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.55);
+  font-family: "Outfit", sans-serif;
+}
+.ai-panel-header,
+.ai-panel-footer {
+  background: #21242c;
+  border-color: #2a2d35;
+}
+.ai-panel-header h4 {
+  font-family: "Domine", serif;
+  color: #e8e9ec;
+}
+.ai-panel-close { color: #9d9ea0; }
+.ai-panel-close:hover { color: #e8e9ec; }
+.ai-panel .form-control {
+  background: #21242c;
+  border: 1px solid #2a2d35;
+  color: #e8e9ec;
+}
+.ai-panel .form-control:focus {
+  border-color: #90aaf9;
+  box-shadow: 0 0 0 2px rgba(144, 170, 249, 0.25);
+}
+.ai-panel .ai-msg-user {
+  background: #1e3a5f;
+  border-left-color: #90aaf9;
+  color: #e8e9ec;
+}
+.ai-panel .ai-msg-assistant {
+  background: #21242c;
+  border-left-color: #68d391;
+  color: #e8e9ec;
+}
+.ai-panel .ai-msg-role { color: #9d9ea0; }
+.ai-panel .ai-msg-body code { background: rgba(255, 255, 255, 0.08); color: #e8e9ec; }
+.ai-panel .ai-msg-body pre.ai-code { background: #111318; border: 1px solid #2a2d35; }
+.ai-panel .ai-msg-body blockquote { border-left-color: #2a2d35; color: #9d9ea0; }
+.ai-panel .ai-msg-body a { color: #90aaf9; }
+.ai-panel .ai-sources { border-top-color: #2a2d35; }
+.ai-panel .ai-sources-title,
+.ai-panel .ai-source-text,
+.ai-panel .ai-source-author { color: #9d9ea0; }
+.ai-panel .ai-source-ord { color: #90aaf9; }
+.ai-panel .ai-source-chunk { border-bottom-color: #2a2d35; }
+.ai-panel .ai-source-book {
+  color: #e8e9ec;
+  border-bottom-color: #2a2d35;
+}
+.ai-panel .ai-source-book:hover { background: #2a2d35; }
+.ai-panel .ai-source-title { color: #e8e9ec; }
+.ai-panel .ai-banner-info {
+  background: #1e3a5f;
+  color: #cadfff;
+}
+.ai-panel .ai-banner-error {
+  background: #3a1a1a;
+  color: #f0c0c0;
+}
+.ai-panel .ai-typing span { background: #90aaf9; }

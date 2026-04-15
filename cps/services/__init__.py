@@ -48,3 +48,9 @@ try:
 except ImportError as err:
     log.debug("Cannot import gmail, sending books via Gmail Oauth2 Verification will not work: %s", err)
     gmail = None
+
+try:
+    from . import ai_librarian
+except ImportError as err:
+    log.debug("Cannot import ai_librarian, AI Librarian feature will be unavailable: %s", err)
+    ai_librarian = None

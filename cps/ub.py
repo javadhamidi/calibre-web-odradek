@@ -42,7 +42,7 @@ except ImportError as e:
         oauth_support = False
 from sqlalchemy import create_engine, exc, exists, event, text
 from sqlalchemy import Column, ForeignKey
-from sqlalchemy import String, Integer, SmallInteger, Boolean, DateTime, Float, JSON
+from sqlalchemy import String, Integer, SmallInteger, Boolean, DateTime, Float, JSON, LargeBinary
 from sqlalchemy.orm.attributes import flag_modified
 from sqlalchemy.sql.expression import func
 try:
@@ -430,6 +430,50 @@ class Bookmark(Base):
     book_id = Column(Integer)
     format = Column(String(collation='NOCASE'))
     bookmark_key = Column(String)
+
+
+class AiBookIndex(Base):
+    __tablename__ = 'ai_book_index'
+
+    STATUS_PENDING = 'pending'
+    STATUS_INDEXING = 'indexing'
+    STATUS_READY = 'ready'
+    STATUS_FAILED = 'failed'
+
+    id = Column(Integer, primary_key=True)
+    book_id = Column(Integer, unique=True, index=True)
+    format = Column(String)
+    embed_model = Column(String)
+    embed_dim = Column(Integer)
+    chunk_count = Column(Integer, default=0)
+    status = Column(String, default=STATUS_PENDING)
+    error = Column(String, nullable=True)
+    created = Column(DateTime, default=lambda: datetime.now(timezone.utc))
+    updated = Column(DateTime, default=lambda: datetime.now(timezone.utc),
+                     onupdate=lambda: datetime.now(timezone.utc))
+
+
+class AiBookChunk(Base):
+    __tablename__ = 'ai_book_chunk'
+
+    id = Column(Integer, primary_key=True)
+    index_id = Column(Integer, ForeignKey('ai_book_index.id'), index=True)
+    ordinal = Column(Integer)
+    text = Column(String)
+    embedding = Column(LargeBinary)
+
+
+class AiLibraryIndex(Base):
+    __tablename__ = 'ai_library_index'
+
+    id = Column(Integer, primary_key=True)
+    book_id = Column(Integer, unique=True, index=True)
+    embed_model = Column(String)
+    embed_dim = Column(Integer)
+    doc_text = Column(String)
+    embedding = Column(LargeBinary)
+    updated = Column(DateTime, default=lambda: datetime.now(timezone.utc),
+                     onupdate=lambda: datetime.now(timezone.utc))
 
 
 # Baseclass representing books that are archived on the user's Kobo device.

@@ -207,6 +207,13 @@
         </div>
       </div>
     </div>
+    {% if g.ai_librarian_enabled and current_user.is_authenticated and not current_user.is_anonymous %}
+      <button type="button" id="ai-librarian-fab" class="ai-fab" title="{{_('Librarian')}}">
+        <span class="glyphicon glyphicon-comment"></span>
+        <span class="ai-fab-label">{{_('Librarian')}}</span>
+      </button>
+      {% include 'ai_librarian_modal.html' %}
+    {% endif %}
     {% block modal %}{% endblock %}
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="{{ url_for('static', filename='js/libs/jquery.min.js') }}"></script>
@@ -224,6 +231,9 @@
       <script src="{{ url_for('static', filename='js/libs/compromise.min.js') }}"></script>
       <script src="{{ url_for('static', filename='js/libs/readmore.min.js') }}"></script>
       <script src="{{ url_for('static', filename='js/caliBlur.js') }}"></script>
+    {% endif %}
+    {% if g.ai_librarian_enabled and current_user.is_authenticated and not current_user.is_anonymous %}
+      <script src="{{ url_for('static', filename='js/ai_librarian.js') }}"></script>
     {% endif %}
     {% block js %}{% endblock %}
   </body>

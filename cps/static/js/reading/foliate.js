@@ -16,6 +16,7 @@ let currentFraction = 0;
 let isDraggingSlider = false;
 let currentCfi = null;
 let isBookmarked = false;
+let bookmarkedCfi = null;
 
 // --- DOM references ---
 const container = document.getElementById("foliate-container");
@@ -161,27 +162,6 @@ function addBookmarkToSidebar(listEl, cfi, label) {
     listEl.appendChild(li);
 }
 
-// Auto-save position to server periodically (debounced)
-let autoSaveTimer = null;
-function scheduleAutoSave(cfi) {
-    if (!calibre.useBookmarks || !cfi) return;
-    clearTimeout(autoSaveTimer);
-    autoSaveTimer = setTimeout(() => {
-        saveBookmarkToServer(cfi);
-    }, 5000);
-}
-
-// Save on page unload using sendBeacon for reliability
-window.addEventListener("beforeunload", () => {
-    if (calibre.useBookmarks && currentCfi) {
-        const csrftoken = $("input[name='csrf_token']").val();
-        const data = new FormData();
-        data.append("bookmark", currentCfi);
-        data.append("csrf_token", csrftoken);
-        navigator.sendBeacon(calibre.bookmarkUrl, data);
-    }
-});
-
 // --- Sidebar ---
 const sidebar = document.getElementById("sidebar");
 const backdrop = document.getElementById("sidebar-backdrop");
@@ -249,6 +229,52 @@ async function initReader() {
         return;
     }
 
+    // Attach 'load' listener BEFORE view.init() so the initial section's load
+    // fires our wheel/keyboard bindings. Foliate uses closed shadow DOM, so
+    // this is the only way to reach the book iframe's document.
+    view.addEventListener("load", (e) => {
+        applyStyles();
+        const doc = e.detail && e.detail.doc;
+        if (doc) {
+            bindWheelToDoc(doc);
+            doc.addEventListener("keydown", (ev) => {
+                const t = ev.target;
+                if (t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA")) return;
+                const isScrolled = currentLayout === "scrolled";
+                switch (ev.key) {
+                case "ArrowLeft": case "h": ev.preventDefault(); view.goLeft(); break;
+                case "ArrowRight": case "l": ev.preventDefault(); view.goRight(); break;
+                case "ArrowUp": ev.preventDefault(); if (isScrolled) view.prev(200); else view.prev(); break;
+                case "ArrowDown": ev.preventDefault(); if (isScrolled) view.next(200); else view.next(); break;
+                case "PageUp": ev.preventDefault(); view.prev(); break;
+                case "PageDown": ev.preventDefault(); view.next(); break;
+                case " ": if (isScrolled) { ev.preventDefault(); if (ev.shiftKey) view.prev(); else view.next(); } break;
+                }
+            });
+        }
+    });
+
+    // Wheel navigation in paginated mode
+    let wheelCooldown = false;
+    function handleWheel(ev) {
+        if (currentLayout === "scrolled") return;
+        const delta = Math.abs(ev.deltaY) > Math.abs(ev.deltaX) ? ev.deltaY : ev.deltaX;
+        if (Math.abs(delta) < 5) return;
+        ev.preventDefault();
+        if (wheelCooldown) return;
+        wheelCooldown = true;
+        setTimeout(() => { wheelCooldown = false; }, 120);
+        if (delta > 0) view.goRight();
+        else view.goLeft();
+    }
+    const boundDocs = new WeakSet();
+    function bindWheelToDoc(doc) {
+        if (!doc || boundDocs.has(doc)) return;
+        boundDocs.add(doc);
+        doc.addEventListener("wheel", handleWheel, { passive: false, capture: true });
+    }
+    document.addEventListener("wheel", handleWheel, { passive: false, capture: true });
+
     // Set renderer attributes for layout
     if (view.renderer) {
         view.renderer.setAttribute("margin", "48px");
@@ -267,13 +293,23 @@ async function initReader() {
         buildTOC(view.book.toc, tocView);
     }
 
+    // Default: Contents tab is active (per HTML), so hide the Bookmarks
+    // panel initially — otherwise both panels stack in the sidebar.
+    const bookmarksViewEl = document.getElementById("bookmarksView");
+    if (bookmarksViewEl) bookmarksViewEl.style.display = "none";
+
     // Apply initial styles
     applyStyles();
 
-    // Navigate to saved position or server bookmark
+    // Navigate to URL hash target, saved position, or server bookmark
+    const hashTarget = (() => {
+        const h = window.location.hash;
+        if (!h || h.length <= 1) return null;
+        return decodeURIComponent(h.slice(1));
+    })();
     const savedCfi = loadPosition();
     const serverBookmark = calibre.bookmark || null;
-    const initialTarget = savedCfi || serverBookmark;
+    const initialTarget = hashTarget || savedCfi || serverBookmark;
 
     if (initialTarget) {
         try {
@@ -315,13 +351,22 @@ async function initReader() {
         if (detail.cfi) {
             currentCfi = detail.cfi;
             savePosition(detail.cfi);
-            scheduleAutoSave(detail.cfi);
-        }
-    });
 
-    // Apply styles on every section load
-    view.addEventListener("load", () => {
-        applyStyles();
+            // Reflect current position in URL hash so pages can be linked to
+            try {
+                const newHash = "#" + encodeURIComponent(detail.cfi);
+                if (window.location.hash !== newHash) {
+                    history.replaceState(null, "", newHash);
+                }
+            } catch (err) { /* ignore */ }
+
+            // Highlight bookmark icon only when current position matches the saved bookmark
+            const nowBookmarked = !!(bookmarkedCfi && detail.cfi === bookmarkedCfi);
+            if (nowBookmarked !== isBookmarked) {
+                isBookmarked = nowBookmarked;
+                updateBookmarkIcon();
+            }
+        }
     });
 
     // --- Navigation ---
@@ -556,10 +601,10 @@ function restoreSettingsUI() {
             const showBookmarks = document.getElementById("show-Bookmarks");
             if (showBookmarks) showBookmarks.style.display = "none";
         } else {
-            // If server already has a bookmark, show it as active
+            // If server already has a bookmark, remember it (icon state
+            // is set by the relocate handler based on current position)
             if (calibre.bookmark) {
-                isBookmarked = true;
-                updateBookmarkIcon();
+                bookmarkedCfi = calibre.bookmark;
                 // Add the existing bookmark to the sidebar list
                 if (bookmarksList) {
                     addBookmarkToSidebar(bookmarksList, calibre.bookmark, "Saved position");
@@ -575,6 +620,7 @@ function restoreSettingsUI() {
                 if (isBookmarked) {
                     // Remove bookmark
                     isBookmarked = false;
+                    bookmarkedCfi = null;
                     saveBookmarkToServer(""); // empty string deletes it
                     updateBookmarkIcon();
                     // Clear sidebar list
@@ -582,6 +628,7 @@ function restoreSettingsUI() {
                 } else {
                     // Add bookmark
                     isBookmarked = true;
+                    bookmarkedCfi = cfi;
                     saveBookmarkToServer(cfi);
                     updateBookmarkIcon();
                     // Add to sidebar list

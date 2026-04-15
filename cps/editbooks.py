@@ -994,6 +994,13 @@ def delete_whole_book(book_id, book):
     # delete book from shelves, Downloads, Read list
     ub.session.query(ub.BookShelf).filter(ub.BookShelf.book_id == book_id).delete()
     ub.session.query(ub.ReadBook).filter(ub.ReadBook.book_id == book_id).delete()
+    # Cascade AI Librarian indexes so orphan rows don't accumulate
+    ai_index = ub.session.query(ub.AiBookIndex).filter(ub.AiBookIndex.book_id == book_id).first()
+    if ai_index is not None:
+        ub.session.query(ub.AiBookChunk).filter(
+            ub.AiBookChunk.index_id == ai_index.id).delete(synchronize_session=False)
+        ub.session.delete(ai_index)
+    ub.session.query(ub.AiLibraryIndex).filter(ub.AiLibraryIndex.book_id == book_id).delete()
     ub.delete_download(book_id)
     ub.session_commit()
 

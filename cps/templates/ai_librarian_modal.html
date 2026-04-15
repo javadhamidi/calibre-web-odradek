@@ -1,0 +1,25 @@
+<div id="aiLibrarianModal" class="ai-panel" aria-hidden="true" role="dialog" aria-labelledby="aiLibrarianModalLabel">
+  <div class="ai-panel-header">
+    <h4 id="aiLibrarianModalLabel">{{_('Librarian')}}</h4>
+    <button type="button" id="ai-panel-close" class="ai-panel-close" aria-label="Close">&times;</button>
+  </div>
+  <div class="ai-panel-body">
+    <div id="ai-indexing-banner" class="ai-banner ai-banner-info" style="display:none;">
+      <span id="ai-indexing-text">{{_('Indexing in progress...')}}</span>
+    </div>
+    <div id="ai-error-banner" class="ai-banner ai-banner-error" style="display:none;"></div>
+    <div id="ai-messages" class="ai-messages"></div>
+    <div id="ai-sources" class="ai-sources" style="display:none;"></div>
+  </div>
+  <div class="ai-panel-footer">
+    <form id="ai-question-form" class="ai-question-form" autocomplete="off">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+      <div class="input-group">
+        <input type="text" id="ai-question-input" class="form-control" placeholder="{{_('Ask a question...')}}" maxlength="1000">
+        <span class="input-group-btn">
+          <button type="submit" id="ai-send-btn" class="btn btn-primary">{{_('Send')}}</button>
+        </span>
+      </div>
+    </form>
+  </div>
+</div>

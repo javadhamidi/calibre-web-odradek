@@ -176,6 +176,13 @@ class _Settings(_Base):
     config_limiter_options = Column(String, default="")
     config_check_extensions = Column(Boolean, default=True)
 
+    config_ai_librarian_enabled = Column(Boolean, default=False)
+    config_ai_ollama_url = Column(String, default="http://localhost:11434")
+    config_ai_chat_model = Column(String, default="llama3.2")
+    config_ai_embed_model = Column(String, default="nomic-embed-text")
+    config_ai_top_k = Column(Integer, default=5)
+    config_ai_num_ctx = Column(Integer, default=8192)
+
     def __repr__(self):
         return self.__class__.__name__
 

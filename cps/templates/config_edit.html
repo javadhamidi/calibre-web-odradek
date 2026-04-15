@@ -151,6 +151,38 @@
       </div>
     </div>
     {% endif %}
+    {% if feature_support['ai_librarian'] %}
+    <div class="form-group">
+      <input type="checkbox" id="config_ai_librarian_enabled" name="config_ai_librarian_enabled" data-control="ai-librarian-settings" {% if config.config_ai_librarian_enabled %}checked{% endif %}>
+      <label for="config_ai_librarian_enabled">{{_('Enable AI Librarian (Ollama)')}}</label>
+    </div>
+    <div data-related="ai-librarian-settings">
+      <div class="form-group" style="margin-left:10px;">
+        <label for="config_ai_ollama_url">{{_('Ollama Server URL')}}</label>
+        <input type="text" class="form-control" id="config_ai_ollama_url" name="config_ai_ollama_url" value="{% if config.config_ai_ollama_url != None %}{{ config.config_ai_ollama_url }}{% endif %}" autocomplete="off" placeholder="http://localhost:11434">
+      </div>
+      <div class="form-group" style="margin-left:10px;">
+        <label for="config_ai_chat_model">{{_('Chat Model')}}</label>
+        <input type="text" class="form-control" id="config_ai_chat_model" name="config_ai_chat_model" value="{% if config.config_ai_chat_model != None %}{{ config.config_ai_chat_model }}{% endif %}" autocomplete="off" placeholder="llama3.2">
+      </div>
+      <div class="form-group" style="margin-left:10px;">
+        <label for="config_ai_embed_model">{{_('Embedding Model')}}</label>
+        <input type="text" class="form-control" id="config_ai_embed_model" name="config_ai_embed_model" value="{% if config.config_ai_embed_model != None %}{{ config.config_ai_embed_model }}{% endif %}" autocomplete="off" placeholder="nomic-embed-text">
+      </div>
+      <div class="form-group" style="margin-left:10px;">
+        <label for="config_ai_top_k">{{_('Retrieved Chunks (top-k)')}}</label>
+        <input type="number" min="1" max="20" class="form-control" id="config_ai_top_k" name="config_ai_top_k" value="{% if config.config_ai_top_k != None %}{{ config.config_ai_top_k }}{% endif %}" autocomplete="off">
+      </div>
+      <div class="form-group" style="margin-left:10px;">
+        <label for="config_ai_num_ctx">{{_('Model Context Window (num_ctx)')}}</label>
+        <input type="number" min="512" max="131072" class="form-control" id="config_ai_num_ctx" name="config_ai_num_ctx" value="{% if config.config_ai_num_ctx != None %}{{ config.config_ai_num_ctx }}{% endif %}" autocomplete="off">
+      </div>
+      <div class="form-group" style="margin-left:10px;">
+        <button type="button" id="ai_test_connection" class="btn btn-default">{{_('Test connection')}}</button>
+        <span id="ai_test_result" style="margin-left:10px;"></span>
+      </div>
+    </div>
+    {% endif %}
     {% if feature_support['goodreads'] %}
     <div class="form-group">
       <input type="checkbox" id="config_use_goodreads" name="config_use_goodreads" data-control="goodreads-settings" {% if config.config_use_goodreads %}checked{% endif %}>
@@ -435,4 +467,39 @@
 {% endblock %}
 {% block modal %}
 {{ filechooser_modal() }}
+{% endblock %}
+{% block js %}
+{% if feature_support['ai_librarian'] %}
+<script>
+$(function() {
+    $("#ai_test_connection").on("click", function() {
+        var out = $("#ai_test_result");
+        out.text("{{_('Testing...')}}");
+        $.ajax({
+            url: "/ai/health",
+            method: "GET",
+            success: function(data) {
+                if (data.ok) {
+                    out.html('<span style="color:green;">&#10003; ' +
+                        "{{_('Connected')}} (" + (data.models || []).length + " {{_('models available')}})</span>");
+                } else {
+                    var parts = [];
+                    if (!data.chat_ok) parts.push("{{_('chat model missing')}}: " + data.chat_model);
+                    if (!data.embed_ok) parts.push("{{_('embed model missing')}}: " + data.embed_model);
+                    out.html('<span style="color:#c00;">&#10007; ' + parts.join("; ") + '</span>');
+                }
+            },
+            error: function(xhr) {
+                var msg = "{{_('Connection failed')}}";
+                try {
+                    var r = JSON.parse(xhr.responseText);
+                    if (r && r.error) msg = r.error;
+                } catch(e) {}
+                out.html('<span style="color:#c00;">&#10007; ' + msg + '</span>');
+            }
+        });
+    });
+});
+</script>
+{% endif %}
 {% endblock %}

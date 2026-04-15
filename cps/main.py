@@ -59,6 +59,13 @@ def main():
         oauth_available = False
         oauth = None
 
+    try:
+        from .ai_librarian import ai_librarian, get_ai_librarian_activated
+        ai_librarian_available = get_ai_librarian_activated()
+    except (ImportError, AttributeError):
+        ai_librarian_available = False
+        ai_librarian = None
+
     from . import web_server
     init_errorhandler()
 
@@ -82,5 +89,8 @@ def main():
         app.register_blueprint(kobo_auth)
     if oauth_available:
         app.register_blueprint(oauth)
+    if ai_librarian_available:
+        limiter.limit("10/minute", key_func=request_username)(ai_librarian)
+        app.register_blueprint(ai_librarian)
     success = web_server.start()
     sys.exit(0 if success else 1)

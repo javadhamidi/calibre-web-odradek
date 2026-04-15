@@ -27,6 +27,9 @@
     <div id="sidebar">
         <div id="panels">
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <a id="sidebar-close" title="Close">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="4" y1="4" x2="12" y2="12"/><line x1="12" y1="4" x2="4" y2="12"/></svg>
+            </a>
             <a id="show-Toc" class="show_view active" data-view="Toc">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="2" y1="4" x2="14" y2="4"/><line x1="2" y1="8" x2="10" y2="8"/><line x1="2" y1="12" x2="12" y2="12"/></svg>
                 {{_('Contents')}}
@@ -34,9 +37,6 @@
             <a id="show-Bookmarks" class="show_view" data-view="Bookmarks">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M3 2h10v13l-5-3.5L3 15V2z"/></svg>
                 {{_('Bookmarks')}}
-            </a>
-            <a id="sidebar-close" title="Close">
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="4" y1="4" x2="12" y2="12"/><line x1="12" y1="4" x2="4" y2="12"/></svg>
             </a>
         </div>
         <div id="tocView" class="view">
