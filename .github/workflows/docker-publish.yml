@@ -18,7 +18,7 @@ on:
         default: "4.0.4"
 
 env:
-  IMAGE: ghcr.io/${{ github.repository_owner }}/calibre-web
+  IMAGE: ghcr.io/${{ github.repository_owner }}/calibre-web-odradek
 
 jobs:
   build:
