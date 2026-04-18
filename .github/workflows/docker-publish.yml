@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - master
-      - development
     tags:
       - "v*"
   pull_request:
@@ -18,7 +17,7 @@ on:
         default: "4.0.4"
 
 env:
-  IMAGE: ghcr.io/${{ github.repository_owner }}/calibre-web-odradek
+  IMAGE: ghcr.io/${{ github.repository_owner }}/calibre-web
 
 jobs:
   build:
@@ -53,8 +52,6 @@ jobs:
             type=semver,pattern={{major}}
             # master branch  →  master
             type=ref,event=branch,branch=master,suffix=
-            # development branch  →  development
-            type=ref,event=branch
             # PRs  →  pr-123 (no push, build-only)
             type=ref,event=pr
             # short SHA on every push for traceability
@@ -132,7 +129,6 @@ jobs:
             type=semver,pattern={{major}}.{{minor}}
             type=semver,pattern={{major}}
             type=ref,event=branch,branch=master,suffix=
-            type=ref,event=branch
             type=sha,format=short
 
       - name: Set up Docker Buildx
